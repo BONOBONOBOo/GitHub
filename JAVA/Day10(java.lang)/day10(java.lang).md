@@ -52,8 +52,6 @@ public class cloneTest {
         9 2 3 4 5 
         9 2 3 4 5 
         */
-        
-        
         /* 
         깊은복사
         1 2 3 4 5 
@@ -63,9 +61,7 @@ public class cloneTest {
         1 2 3 4 5 
         */
 	}
-
 }
-
 ```
 
 * equals()
@@ -104,6 +100,34 @@ System.out.println("결과 : " + number);
 StringBuffer : String class를 편집하기 위해 만들어진 클래스
 
 StringBuilder : StringBuffer에서 스레드 동기화 기능을 뺀 클래스
+
+---
+
+### 정규식(Regualr Expression)
+
+패턴과 일치하는 문자열을 찾아내기위해 사용하는 것으로 미리 정의된 기호와 문자를 이용해서 찾아내는것.
+
+- Pattern : 정규식을 정의
+
+- Match : 데이터와 비교
+
+```java
+import java.util.regex.*;
+
+public class RegularPractice {
+
+	public static void main(String[] args) {
+		String[] data = {"bat","baby","bonus","cA","ca"};
+		
+		Pattern pa = Pattern.compile("c[a-z]*");
+		for (int i = 0;i<data.length;i++) {
+			Matcher m =pa.matcher(data[i]);
+			
+			if(m.matches()) 
+				System.out.println(data[i]);
+			}}}
+
+```
 
 
 
