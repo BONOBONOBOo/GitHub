@@ -4,6 +4,7 @@
 
  * .clone()
    	* 깊은 복사
+   * 사용자 정의 클래스를 복제 가능하도록 하려면 Cloneable구현해야한다.
 
 ``` java
 package day10;
@@ -65,25 +66,77 @@ public class cloneTest {
 ```
 
 * equals()
-  * 객체의 레퍼런스와 속성으 값이 같은지 확인하는것
+  * 객체의 레퍼런스와 속성의 값이 같은지 확인하는것
+  * 해쉬값을 비교한다.(hashCode())
 * hashCode()
   * 같은 값을 갖고있는 hash코드가 있을수는 있지만 Object의 hashcode는 주소값을 기반으로 하기때문에
   * 같은 identityhashcode를 가질 수 없다.
   * 데이터의 균등한 분포를 할 수 있다.
-
 * toString()
+  * class full name@hashcode
   * 원래는 객체의 hash값을 받지만 오버라이드해서 사용자가 원하는 정보를 받을 수 있다.
 
 ---
 
-### String Class
+### String Class(불변객체)
 
 * equals()
+  
   * 문자열 자체를 비교한다.
+  
 * charAt()
+  
   * 하나하나의 문자열을 인덱스로 얻어오기
+  
 * join()
+  
   * 여러문자열 사이에 구분자를 넣고 결합
+  
+* charAt(indexx)
+  
+  * 스트링에서 한 문자 받아오기
+  
+* substring(1,3)
+  
+  * 첫번째 문자에서 3번쨰 문자까지 추출
+  
+* getBytes()
+  
+  * String에서 한 문자씩 배열에 저장
+  
+* A.concat(B)
+  
+  * A와B연결하기
+  
+* replace()
+
+  ```java
+  String s = "JackAndJun"
+  String replace = s.replace("J","Bl");//replace = BlackAndBlue
+  ```
+
+* String.valueOf()
+
+  * primitivedata type를 String으로 변경
+
+* splite()
+
+  * 구분자로 잘라서 토큰들을 배열로 리턴
+
+* join(결합문자,기존문자열배열)
+
+  * 문자열 배열의 요소를 하나씨 결합문자를 사용해서 리턴해준다.
+
+    ```
+    public class praa {
+    
+    	public static void main(String[] args) {
+    		String st[] = {"Hello","AH~"};
+    		String stjoin = String.join(",",st );
+    		System.out.println(stjoin);
+    	}
+    }
+    ```
 
 ```java
 String phone = "010,1234,5678";
@@ -100,6 +153,8 @@ System.out.println("결과 : " + number);
 StringBuffer : String class를 편집하기 위해 만들어진 클래스
 
 StringBuilder : StringBuffer에서 스레드 동기화 기능을 뺀 클래스
+
+
 
 ---
 
