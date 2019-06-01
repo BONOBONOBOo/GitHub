@@ -1,0 +1,64 @@
+-- 함수
+	1)단일행 함수	
+	2)다중행 함수(그룹함수)
+
+문자행 함수
+
+             1. lower(문자or칼럼) : 소문자로 변경
+
+             2. upper(문자or칼럼) : 대문자로 변경
+
+             3. initcap(문자or칼럼) : 첫글자만 대문자로 변경
+
+             4. concat(문자1,문자2) , concat(칼럼1,칼럼2) : 2개의 문자를 합칠 때 사용
+
+(*많이 사용*)5.substr(문자or칼럼,n1,n2) : n1 위치에서 n2크기만큼 잘를 때 이용
+
+             6. instr(문자, 검색문자) : 문자열에서 첫번째 검색문자의 위치값 반환
+
+             7. lpad(문자1, n, 문자2) : 문자1의 왼쪽편에 문자2를 삽입 하는데 문자수는n개가 될때까지 채운다.
+                rpad(문자1, n, 문자2)
+
+	     8. ltrim(문자1,문자2) : 문자1의 왼쪽편에 문자2패턴이 연속적으로 나온다면 잘라낸다.
+		=trim(leading '*' from '**aa**')
+                rtrim(문자1,문자2)
+		=trim(trailing '*' from '**aa**')
+
+
+
+
+	
+	예제1) 사원이름을 모두 대문자로 변경(upper)
+	
+	SQL> select upper(name) from employee;
+
+	예제2) 사원이름 첫자를 대문자로 변경(initcap)
+
+	SQL> select initcap(name) from employee;
+
+	예제3)concat사용
+
+	SQL> select concat(database,system) from dual (dual과 concat을 사용하여 database와 system을 합친다.)
+	
+	예제4)주민등록번호에서 8번째 자리 숫자를 이용하여 성별 알아내기(substr)
+
+	SQL> select substr('123456-1234567',8,1)
+	SQL> from dual
+ 	SQL>/
+	
+	예제 5)
+	
+	SQL> select instr('database system','s') from dual;(해당 문자열에서 s를 검색하여 위치 반환)
+
+	예제 6)
+
+	SQL> select lpad('lpad',10,'*') from dual;(lpad 왼쪽편에 *로 10자리까지 채운다 -> ******lpad)
+	
+	예제 7)
+	
+	SQL> select ltrim('******trim******','*') from dual;(문자1의왼쪽편에 나오는 *패턴을 지운다 -> trim******)
+
+
+
+
+dual 테이블 > 임의적으로 사용하는 칼럼들을 사용 할 수 있게 해줌

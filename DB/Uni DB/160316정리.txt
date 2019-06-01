@@ -1,0 +1,185 @@
+
+select : 조작명령
+
+save, get, r, /, ed : SQLPLUS 도구
+
+파일조작 : save, get, ed, spool, start(@)
+
+실행 : start(@), /, r,
+편집 : a, c(수정),del(삭제), i(다음라인에 줄 삽입), l(방금한 명령 리스트 확인), n(숫자,행번호), 
+작업환경(전환) : host, exit, local(pc로 잠시 이동)
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+---휴지통 비우기---
+	purge recyclebin;
+
+
+---L 방금 입력한 명령어 표시----
+	sql>l
+	sql> l 2 3(2번째 3번째 넣은 명령 보이기)
+
+
+--- 행번호 변경 ---
+
+	가고싶은 행 번호 입력
+	SQL> 2
+
+
+--- 행 삭제 (del)-----
+	SQL> del l (커서있는 라인 삭제)
+	SQL> del 4 6 (4~6라인 삭제)
+
+--- 행 내용 삽입---
+	SQL> 2 3333 (2행에 3333을 넣기)
+	SQL>  
+
+--- 행 내용 변경---
+	SQL> 3(3번행으로 가서)
+	SQL> c/from/to/(from을 to로 변경하기)
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+--- 1.특정 행 검색(조회)---
+
+	where 조건절;
+	<조건절의 구성>
+	컬럼명	관계연산자	리터럴
+	      	논리연산자	컬럼
+		SQL연산자	연산식
+				함수
+
+	예제1) 사원테이블에서 사원명이 ~kimjisu 조회(사원번호,사원명,입사일자)
+	
+	SQL>edit d0316.sql (에디트 파일 만들기)
+	SQL>select num,name,hiredate
+	SQL>from employee
+	SQL>where name = 'kimjisu'
+	SQL>/
+	SQL>@d0316 (에디트 파일 실행)
+	
+	예제2)생년월일 70.1.1 이전에 태어난 사원조회(사번,사원명,생년월일)
+	
+	SQL>edit d0316.sql
+	SQL>select num,name,birthdate
+	SQL>from employee
+	SQL>where birthdate < '70/01/01'
+	SQL>/
+	SQL>@d0316
+
+	
+	예제3)급여가 350~400만원
+
+	SQL>edit d0316.sql
+	SQL>select name,salary
+	SQL>from employee
+	SQL>where salary >= 3500000
+	SQL>and  salary <= 4500000
+	SQL>/
+	SQL>@d0316
+	
+	예제 3-1)
+	SQL>select name,salary
+	SQL>from employee
+	SQL>where salary between 3500000 and 4500000 (SQL 범위 연산자(between a and b)사용)
+	SQL>/
+	
+	예제 4)사원의 주소지가 busan,daegu인 사원의 사원명, 주소를 출력
+	SQL>select name,address
+	SQL>from employee
+	SQL>where address = 'busan'
+	SQL>or address = 'daegu'
+	SQL>/
+	
+	예제 4-1)
+	SQL>select name,address
+	SQL>from employee
+	SQL>where address in('busan','daegu')  --- (SQL 연산자 IN사용)
+	SQL>/
+	
+	예제 5)성이 kim인 사원 찾기
+	select name,address
+	from employee
+	where name like 'kim%' (like연산자와 와일드문자를 사용해서 검색)
+	/
+
+---null값 검색--------------------------------
+	is null
+	is not null
+	
+---x---
+select name,commission
+from employee
+where commission = null (null사용은 '='을 사용 할 수 없다.)
+/
+	
+	
+-------	수당을 받지않는 사람 검색
+select name,commission
+from employee
+where commission is null
+/
+
+------ 수당을 받는사람 검색
+select name,commission
+from employee
+where commission is null
+/
+	
+	
+---2.정렬
+	order by 정렬기준컬럼1 [asc]|desc,
+		 정렬기준컬럼2 [asc]|desc
+	
+	
+	asc 오름차순(생략하면 자동으로 오름차순)
+	desc 내림차순
+	
+	
+	예제1) 입사순으로 정렬
+
+	SQL>select name,hiredate
+	SQL>from employee
+	SQL>order by hiredate
+	SQL>/
+	
+	예제2) 80년도 이전에 입사한사람을 오름차순으로 정렬
+
+	SQL>select name,hiredate
+	SQL>from employee
+	SQL>where hiredate <'80/01/01'
+	SQL>order by hiredate
+	SQL>/
+	
+	예제3) 	급여 + 추가수당을 오름차순으로 정렬
+	SQL>select name,salary+nvl(commission,0) as Total(commission의 null값을 0으로 변환후 salary와 합한뒤 별칭부여)
+	SQL>from employee
+	SQL>order by Total(별칭으로 사용 할 수 있다.)
+	SQL>/
+
+	
+	
+	
+	
+	
+
+
+------------------------------------------------------------
+
+	관계연산자 : <, >, =, <=, >=
+	SQL 연산자 : between, in
+
+	
+	%,_ : 와일드 문자(mask)
+	% : all string 
+		ex) kim%
+		kimsss(o) ssskim(x)
+
+	_ : one char(한문자)
+		ex)kim_ (전체 문자수는 4글자) 
+	
+	>와일드 문자를 사용 할 때에는 like연산자를 사용한다.
+	
+	주석 = '--'
