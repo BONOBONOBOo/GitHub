@@ -154,15 +154,64 @@ values (별명2.컬럼리스트)
 
 ```
 
+### 트렌젝션
+
+* unit of work(분리되어 수행 될 수 없는 작업단위)
+
+ACID - 원장성,일관성,격리성,영속성
+
+DB관점 
+
+* 트렌젝션은 변경이 포함되면 select는 트렌젝션으로 포함되지 않는다.
+
+* 사용중인 DML트랜잭션의 세션이 비정상종료하면 oracle server는 rollback합니다.
+
+* 사용중인 DML트랜잭션의 세션이 정상종료하면 oracle server는 commit합니다.
+
+  
 
 
 
+###### 트렌젝션의 단위
+
+* 한개 이상의 DML들로 구성 - 명시적commit ,rollback
+
+* 한개의 DDL - auto commit
+
+* 한개의 DCL - auto commit
+
+   
+
+##### 읽기일관성 
+
+select들이 변경중인 user들을 기다리지 않아도 괜찮다.
+
+변경 작업을 하려는 user는 select를 하여 검색을하는 유저들의 종료를 기다리지 않아도 괜찮다.
+
+변경작업 중인 user는 중간 결과를 변경된 결과로 볼 수 있고
+
+변경 작업 중이지 않은 user들은 commit하기 전의 결과를 볼 수 있다.
 
 
 
+오라클 서버는 읽기 일관성을 위해서lock , undo segment등을 지원합니다.
 
 
 
+###### SAVEPOINT 연습
+
+```sql
+insert into testtable values(1);
+insert into testtable values(2);
+savepoint a;
+insert into testtable values(3);
+insert into testtable values(4);
+savepoint b;
+insert into testtable values(5);
+insert into testtable values(6);
+rollback to savepoint b;
+select * from emp;
+```
 
 
 
