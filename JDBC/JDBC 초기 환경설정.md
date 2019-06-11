@@ -1,4 +1,8 @@
-JDBC 초기 환경설정
+# JDBC 초기 환경설정
+
+
+
+
 
 ```java
 package lab.java.core;
@@ -31,3 +35,12 @@ public class DBTest {
 
 ```
 
+Statement
+
+* 완전한 sql문장을 전송할때 사용한다.
+  * 동일한 문장의 파라미터만 변할 때에도 하드패싱을 수행한다.
+  * 반복문을 사용 할 경우 성능이 안좋아질수있다.
+
+Prepared Statement
+
+* 인자를 따로 설정해서 완성된 구문을 실행한다.
