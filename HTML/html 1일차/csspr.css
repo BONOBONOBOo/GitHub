@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+
+.clear{
+clear:both;
+}
+*{
+padding:0;
+margin:0;
+}
+header{
+width:995px;
+height:100px;
+margin-top:10px;
+border:solid 1px #cccccc;
+}
+#logo{
+float:left;
+border:solid 1px green;
+}
+#top{
+float:right;
+margin:30px 20px 0 0;
+border:solid 1px green;
+}
+
+
+nav{
+width:995px;
+height:70px;
+margin-top:10px;
+border:solid 1px green;
+}
+
+*{
+padding:0;
+margin:0;
+}
+li{
+list-stype-type:none;
+}
+Selection{
+float: left;
+width:674px;
+height:240px;
+margin-top:10px;
+border:solid 1px green;
+}
+aSide{
+float: left;
+width:290px;
+height:240px;
+margin-top:10px;
+margin-left:29px;
+border:solid 1px green;
+}
+footer{
+width:995px;
+height:130px;
+margin-top:20px;
+border:solid 1px #cccccc;
+}
+#address{
+float:left;
+margin: 30px 0 0 50px;}
+#customer{
+float:left;
+margin:20px 0 0 180px}
