@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>회원가입</title>
+</head>
+<body>
+<section>
+<h1>가입정보</h1>
+<style>
+
+input{
+margin-right: 10px;
+}
+
+</style>
+
+<form>
+<ul>
+<li>
+<label>이름</label>
+<input 
+type="text" 
+id="name"
+placeholder="홍길동" 
+required autocomplete="name"><br>
+</li>
+
+<li>
+<label>이메일</label>
+<input 
+type="email" 
+id="email"
+placeholder="abcd@naver.com"><br>
+</li>
+
+<li>
+<label>비밀번호</label>
+<input type="text"><br>
+</li>
+
+<li>
+<label>성별</label>
+<select id="sex">
+	<option value="M">남성</option>
+	<option value="W">여성</option>
+</select>
+</li>
+</ul>
+
+<div class="centered">
+<input type="submit" value="가입하기" class="centered">
+</div>
+</form>
+</section>
+
+
+</body>
+</html>
