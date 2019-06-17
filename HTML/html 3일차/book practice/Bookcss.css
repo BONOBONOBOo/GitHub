@@ -1,0 +1,147 @@
+@charset "EUC-KR";
+
+body{
+	background-image: 1010.jpg;
+}
+
+header{
+	border-bottom: solid 2px #eeeeee;
+}
+Section{
+	border-bottom: solid 1px #eeeeee;
+}
+
+
+ul{
+	width:100%;
+	clear:left;
+
+}
+#basic li{
+	margin:20px;
+	display: inline-block;
+	float:left;
+	text-align: center;
+}
+#ano li{
+	clear:left;
+	margin:1px;
+	padding-left:19px;
+	display: block;
+}
+input[type=text]{
+	background-color: red;
+}
+input[type=password]{
+	background-color: blue;
+}
+
+img[src$=png]{
+	border:4px double green;
+}
+
+img[src$=jpg]{
+	border:4px double orange;
+}
+
+h1 + h2:hover{
+	color:white;
+	background-color: black;
+}
+
+h1 + h2:active {
+	color:yellow;
+	background-color: black;
+}
+
+h1 ~ h2:hover {
+	color:white;
+	background-color: black;
+}
+
+h1 ~ h2:active {
+	color:yellow;
+	background-color: black;
+}
+
+
+h1:hover {
+	color:white;
+	background-color: black;
+}
+h1:active {
+	color:yellow;
+	background-color: black;
+}
+
+input:enabled {
+	background-color: white;
+}
+
+input:disabled {
+	background-color: gray;
+}
+input:focus {
+	background-color: orange;
+}
+input:checked {
+	background-color: red;
+}
+
+ul{
+	overflow: hidden;
+}
+
+#pp li{
+	list-style: none;
+	float: left;
+	padding: 15px;
+	display: inline;
+}
+
+#pp li:first-child {
+	border-radius: 10px 0 0 10px;
+}
+#pp li:last-child {
+	border-radius: 0 10px 10px 0;
+}
+
+#pp li:nth-child(2n) {
+	background-color: black;
+	color:white;
+}
+
+#pp li:nth-child(2n+1) {
+	background-color:white ;
+}
+
+p::first-letter {
+	font-size: 3em
+}
+p::first-line {
+	color: red;
+}
+p::selection{
+	color:yellow;
+	background-color: black;
+}
+
+a{
+	text-decoration: none;
+}
+a:visited {
+	color:green;
+}
+a:link::after {
+	content:'-' attr(href);
+}
+
+
+
+
+
+
+
+
+
+
