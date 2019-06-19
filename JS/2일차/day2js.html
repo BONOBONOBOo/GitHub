@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>day2</title>
+</head>
+<body>
+<script type="text/javascript">
+//dic 객체 생성
+var dic={a:"1",b:"2"};
+//dic attribute 찍기
+console.log(dic.a);
+console.log(dic["a"]);
+//데이터 추가
+dic.c="3"
+console.log(dic);
+//데이터 삭제
+delete dic.c;
+console.log(dic);
+//document.write(dic instanceof Object);
+console.dir(Object);
+
+dic.toString=function(){
+	var output="";
+	for(var key in this){
+		if(key != 'toString'){
+			output+=key+" "+this[key]+"\n";
+		}
+	}
+	return output;
+}
+console.log(dic.toString());
+
+console.log("a in dic " + ('a' in dic));
+
+
+var std1 = {이름 : '이원호', 수학 : 100, 영어:100,과학:100};
+var std2 = {이름 : '이원호', 수학 : 0, 영어:0,언어:0};
+console.log(std1.이름+"의 총점은"+ (std1.수학+std1.영어+std1.과학) +"이다.");
+
+with(std1,std2){
+	console.log(이름+"의 총점은"+ (수학+영어+언어) +"이다.");	
+}
+
+/*  console.log(std.이름+"의 총점은"+ 
+		function(
+				//var total = 0;
+			for(var num in std){
+				
+				if(num != '이름'){
+					console.log(total += std.num);
+		}})
+		+"이다.");  */
+
+		//func1(); // 익명함수 사용 ERROR
+		func2(); // 선언함수 사용
+/* 
+		var func1 = function(){
+			console.log("func1");
+		}
+ */
+		function func2(){
+			console.log("func2");
+		}
+ 		
+ 		//함수 연습
+ 		function add(a,b){
+ 			console.log("함수 인수의 개수 "+arguments.length+"\n");
+ 			var sum = 0;
+ 			
+ 			for(var item in arguments){
+ 				//console.log(item+"\n")
+ 				sum += arguments[item];
+ 			}
+ 			return sum;
+ 		}
+ 		
+ 		function add1(a,b,c){
+ 			console.log("함수 인수의 개수 "+arguments.length+"\n");
+ 			var sum = 0;
+ 			
+ 			for(var item in arguments){
+
+ 				for(var i = 0   ; i<arguments[item].length;i++){
+ 					sum+=arguments[item][i];
+ 				}
+ 			}
+ 			return sum;
+ 		}
+ 		console.log("add(3,5) = "+add(3,5)+"\n");
+ 		console.log("add(3,5,7) = "+add(3,5,7)+"\n");
+ 		console.log("add(3) = "+add(3)+"\n");
+ 		var nums = [1,2,3,4,5]
+ 		var nums2 = [1,2,3,4,5]
+ 		console.log("add(nums) = "+add1(nums,nums2)+"\n");
+ 
+ 		
+		function square(a){
+			return a*a;
+		}
+		function pyth(w,h){
+			return Math.sqrt(square(w)+square(h));
+		}
+		console.log(pyth(3,4));
+		function square(a){
+			return a+a;
+		}
+ 		
+ 		
+ 		console.log("###############################################\n")
+ 		
+ 		function test(name){
+ 			gVal = name;
+ 			
+ 			var lVal = "lVal";
+ 			return function(){
+ 				return lVal;
+ 			}
+ 		}
+ 		
+
+ 		console.log(test("이원호")());
+ 		console.log(gVal);
+ 		console.log("###############################################\n");
+ 		
+
+ 		function caller(callee){
+ 			for(var i=0;i<5;i++){
+ 				callee(i);
+ 			}
+ 		}
+ 		function callee(i){
+ 			console.log(i+"\n");
+ 		}
+ 		caller(callee);
+ 		console.log("###############################################\n");
+ 		
+ 		var a = "out a";
+ 		console.log(a+"\n");
+ 		{	
+ 			const c =1
+ 			let a = "in a";
+ 			let b = "in b";
+ 			console.log(a+"\n");
+ 			console.log(b+"\n");
+ 			console.log("const c = "+c+"\n");
+ 		}
+ 		console.log(a+"\n");
+		//console.log(b+"\n");
+ 		
+		
+ 		{	
+ 			const c =1
+ 			console.log("const c = "+c+"\n");
+ 		}
+ 		//console.log("const c = "+c+"\n");
+ 		
+ 		console.log("###############################################\n");
+ 		var std5 = {이름 : '이원호'
+ 				, 수학 : 88
+ 				, 영어:90
+ 				,과학:77
+ 				,국어:75
+ 				,total:function(){
+ 					with(std5)
+ 					return 국어+수학+영어+과학
+ 				}
+ 				,avg:function(){
+ 					return this.total()/4
+ 				}
+ 		};
+ 		with(std5){
+ 			console.log("이름 : "+ 이름+
+ 					"점수 합 : "+total()+
+ 					"평균 : "+avg())	
+ 		}
+ 		console.log("####생성자 함수###########################################\n");
+ 		function Student(a,b,c,d,e){
+ 			this.name=a;
+ 			this.국어 = b;
+ 			this.수학 = c;
+ 			this.영어 = d;
+ 			this.과학 = e;
+ 			
+ 			Student.prototype.total=function(){
+ 					with(this)
+ 					return 국어+수학+영어+과학
+ 				};
+ 			
+ 			Student.prototype.avg=function(){
+ 					return this.total()/4
+ 			};
+ 		}
+ 		console.dir(Student);
+ 		
+ 		var students=[
+ 			new Student("이원호",1,2,3,4),
+ 			new Student("이원",5,6,7,8)
+ 		];
+ 		
+ 		for(var i in students){
+ 			console.log(students[i]);
+ 		}
+ 		console.log("###############################################\n");
+ 		console.dir(Date);
+ 		
+ 		var array1 = new Array();
+ 		var array2 = new Array(10);
+ 		var array3 = new Array(1,2,3,4,5);
+ 		
+ 		array3[5]=6;
+ 		array3.push(7);	
+ 		
+ 		console.log("Array1's length = "+array1.length+"\n");
+ 		console.log("Array2's length = "+array2.length+"\n");
+ 		console.log("Array3's length = "+array3.length+"\n");
+ 		
+ 		for(var num in array1){
+ 			console.log(array3[num]+"\n");
+ 		}
+ 		
+ 		console.log("\n")
+ 		delete array3[1];
+ 		
+ 		for(var num in array3){
+ 			console.log(array3[num]+"\n");
+ 		}
+ 		
+ 		
+ 		console.dir("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+</script>
+</body>
+</html>
