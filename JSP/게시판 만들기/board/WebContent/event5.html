@@ -1,0 +1,28 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="EUC-KR">
+	<title></title>
+	<script type="text/javascript">
+	window.addEventListener("load",function(){
+		
+		var div1 = document.getElementById("div1");
+		var num = Math.round(Math.random()*100);
+		div1.style.fontSize = 100+num+"px"
+		div1.innerHTML = num;
+		
+		setTimeout(function(){
+			location.href="event5.html"
+		},3000)
+	})
+	</script>
+	</head>
+	<body>
+	<h3>이 페이지는 3초 후 이동합니다.</h3>
+	
+	<div id=div1>
+	1
+	</div>
+	
+	</body>
+	</html>

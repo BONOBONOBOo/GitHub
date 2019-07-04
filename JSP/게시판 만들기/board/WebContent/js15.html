@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript">
+window.onload=function(){
+ 	var h1=document.createElement("h1");
+	var text1 = document.createTextNode("새 요소 추가");
+	h1.appendChild(text1);
+	document.body.appendChild(h1);
+/*	
+	var img1=document.createElement("img");
+	img1.src="1010.jpg";
+	img1.width=300;
+	img1.heigt=300;
+	document.body.appendChild(img1);
+	
+	var img2=document.createElement("img");
+	img2.setAttribute("src","123.png");
+	img2.setAttribute("width",300);
+	img2.setAttribute("height",300);
+	document.body.appendChild(img2); 
+*/
+	var nodelist = document.getElementsByName("j2");
+	console.log(nodelist.length);
+	console.log(nodelist[0].innerHTML+" "+nodelist[1].innerHTML);
+	nodelist=document.getElementsByTagName("p");
+	console.log(nodelist.length);
+	
+	var p1 = document.getElementById("j1");
+	p1.style.border="2px solid blue";
+	p1.style.color="green";
+	p1.style.fontSize="30";
+	console.log(document.getElementById("j1").parentNode.nodeName);
+	
+	document.body.removeChild(p1);
+}
+</script>
+<title></title>
+</head>
+<body>
+<h3>Document객체를 이용한 문서 구조 변경</h3>
+<p id="j1">JavaScript</p>
+<p name="j2">JAVA</p>
+<p name="j2">JAVAJAVAJAVA</p>
+
+</body>
+</html>

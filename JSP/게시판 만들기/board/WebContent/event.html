@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+/* window.onload = function(){ //level 0 
+	alert("1");
+}
+window.onload = function(){
+	alert("2");
+}
+window.onload = function(){
+	alert("3");
+} */
+
+
+/*window.addEventListener("load",function(){ // level 2
+	alert("1"),flase
+});
+window.addEventListener("load",function(){
+	alert("2"),flase
+});
+window.addEventListener("load",function(){
+	alert("3"),flase
+});
+ */
+ 
+ window.addEventListener("load",function(){
+		var h3 = document.querySelector("#evt");
+		h3.onclick=function(){
+			alert("!!!!!");
+			//h3.onclick=null;//코드 한번만 실행하기
+			//this.onclick=null;//코드 한번만 실행하기
+		}
+	});
+ 
+ window.addEventListener("load",function(){
+		var h3 = document.querySelector("#evt2");
+		h3.onclick=function(){
+			h3.setAttribute("color","red");
+			h3.setAttribute("background-color","black");
+		}
+	});
+ 
+ 
+
+</script>
+<h3>자바 스크리트 이벤트</h3>
+#DOM level 0 이벤트 모델 : 
+window.on이벤트명 =하나의 이벤트만 가능
+
+#DOM Level 2 이벤트 모델:
+이벤트 소스 (태그객체)
+
+
+</style>
+
+
+<h3 id="evt" >이벤트 한번 핸들러 수행</h3>
+<h3 id="evt2">이벤트 한번 핸들러 수행</h3>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

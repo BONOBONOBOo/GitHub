@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>jQuery 기본</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+/* jQuery(document).ready(function(){alert("ready event handler")});
+$(document).ready(function(){alert("ready event handler2")});
+$(function(){alert("ready event handler3")}) */
+
+
+/* $(document).ready(function(){
+	$("h3").css("color","blue").css("backgroundColor","yellow");
+});
+ */
+
+ /* $(document).ready(function(){
+		$(*).css("color","blue").css("backgroundColor","yellow");
+	}); */
+	
+	/* $(document).ready(function(){
+		$("div,p").css("color","blue").css("backgroundColor","yellow");
+	}); */
+	
+	$(document).ready(function(){
+		$("#simple").css("color","blue").css("backgroundColor","yellow");
+	});
+	
+	$(document).ready(function(){
+		$(".todo").css("color","green").css("backgroundColor","yellow");
+	});
+	
+	$(document).ready(function(){
+		$("div #pp").css("color","red").css("backgroundColor","yellow");
+	});
+	
+	$(document).ready(function(){
+		$("div p").css("color","red").css("backgroundColor","yellow");
+	});
+	
+	$(document).ready(function(){
+		$("input[type=text]").val("Hello jQuery..!");
+		$("input:password").css("backgroundColor","blue")
+		$("input:focus").css("backgroundColor","red")
+	});
+ 
+</script>
+</head>
+<body>
+	<h3 id=simple> JQuery </h3>
+	<h3> JQuery JQuery JQuery </h3>
+	<h3 class=todo> JQuery </h3>
+	<div><p id=pp>트리거 어렵다</p></div>
+	<p>진짜로</p>
+	<article class=todo>행트리거 문장트리거</article>
+	<ul>
+		<li>행트리거 : 각 행을 조절할수있음</li>
+		<li>문장트리거 : 한 문장을 실행</li>
+	</ul>
+	
+	text<input type="text"/>
+	password<input type="password"/>
+	radio<input type="radio"/>
+	search<input type=search />
+	s<input type="checkedbox" autofocus="autofocus"/>
+	file<input type="file"/>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

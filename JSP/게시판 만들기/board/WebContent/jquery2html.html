@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"/>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	//5초 후에 코드 실행.
+	setTimeout(function(){
+		var value = $('select > option:selected').val();
+		alert(value);
+	},5000);
+});
+
+</script>
+</head>
+<body>
+
+<select>
+<option>A</option>
+<option>B</option>
+<option>C</option>
+<option>D</option>
+<option>E</option>
+</select>
+
+</body>
+</html>

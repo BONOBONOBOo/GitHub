@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+
+function fofo(data){
+	console.log("a = "+ data.a )
+	console.log("b = "+ data.b )
+}
+
+window.onload = function(){
+	var url = "send.jsp";
+	var script = document.createElement("script");
+	script.setAttribute("src",url);
+	document.getElementsByTagName("head")[0].appendChild(script);
+}
+</script>
+<body>
+
+
+</body>
+</html>

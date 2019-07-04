@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+window.onload=function(){
+	/*
+	var intervalID = setInterval(function(){
+		window.close()
+	},5000); */
+	/* setTimeout(function(){
+		window.close()
+	},3000); */
+	
+	
+	
+	document.getElementById("up").onclick = function(){
+		window.moveBy(0,-10);
+	}
+	
+	document.getElementById("left").onclick = function(){
+		window.moveBy(-10,0);
+	}
+	
+	document.getElementById("right").onclick = function(){
+		window.moveBy(10,0);
+	}
+	
+	document.getElementById("down").onclick = function(){
+		window.moveBy(0,10);
+	}
+	
+	
+	var btn=document.getElementById("newOpen");
+	btn.onclick=function(){
+		window.open("jsp14.html","","width=300 height=300")
+	} 
+}
+</script>
+</head>
+<body>
+<h3>window 객체 활용</h3>
+<button id="newOpen">새창 열기</button><br>
+<input type="button" id="up" value="	up	"/><br>
+<input type="button" id="down" value="	down	"/><br>
+<input type="button" id="left" value="	left	"/><br>
+<input type="button" id="right" value="	right	"/><br>
+
+
+
+</body>
+</html>
