@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lab.mybatis.user.UserMapper">  
+  <!-- 
+select * from products; O
+
+select * from products where prodnum =? O;
+
+select * from products where unitPrice between ? and ? O;
+
+
+update products set unitPrice = ?, UnitsInStock=?  where prodnum = ? O;
+
+delete from products  where prodnum = ? ; -->
+
+  <select id="getProductList" resultType="lab.spring.product.model.ProductVO">
+  	select * from products
+  </select>
+  
+  <select id="getProduct" resultType="lab.spring.product.model.ProductVO" parameterType="string">
+  	select * from products where prodnum = #{pname}
+  </select>
+  
+  <select id="selectProduct" resultType="lab.spring.product.model.ProductVO"
+  parameterType="hashmap">
+  	select * from products where unitPrice between #{start} and #{end};
+  </select>
+  
+  <update id="modifyProduct" parameterType="lab.spring.product.model.ProductVO">
+  	update products set unitPrice = #{unitPrice}, UnitsInStock=#{unitsInStock}  where prodnum = #{pronum}
+  </update>
+  
+  <delete id="removeProduct" parameterType="string">
+  	delete from products  where prodnum = #{pronum}
+  </delete>
+
+</mapper>
