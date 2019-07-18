@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+svg{
+width:500px;
+height:500px;
+border:1px solid black;
+}
+rect{
+stroke-width:4px;
+stroke: yellow;
+fill:red;
+}
+circle{
+opacity:0.75;
+fill:blue
+}
+</style>
+</head>
+<body>
+<h1>도형 그리기</h1>
+
+<h2>M 절대좌표,m 상대 좌표
+<br>Z,z는 패스를 닫음
+<br>L 절대 좌표 l상대 좌표:그리기 관련 명령
+<br>C 절대좌표,c상대 좌표:곡선 그리기 관련 명령
+<br>A 절대좌표,a상대 좌표:곡선 그리기 관련 명령
+</h2>
+
+<svg>
+
+<!-- <rect x="30" y="20" width="200" height="100"/>
+<rect x="30" y="150" width="200" height="100" rx="40" rt="40"/>
+<circle cx="250" cy="140" r="120"/>	 -->
+
+
+
+<!-- <rect x="30" y="20" width="200" height="100"style="fill:red;stroke:blue;stroke-width:10px"/>	
+<path d="M80,50 L220,90 280,200" />
+<path d="M10,410 C80,-100 150,80 300,110"/>
+<text x="325" y="150" >SVG 텍스트 예제</text>
+<text x="325" y="200" text-anchor="start">SVG 텍스트 예제</text>
+<text x="325" y="250" text-anchor="middle">SVG 텍스트 예제</text>
+<text x="325" y="300" text-anchor="end">SVG 텍스트 예제</text> -->
+
+
+
+
+<!-- 도형 투명도 -->
+<!-- <g style=opacity:0.25>
+<rect x="30" y="20" width="200" height="100"/>
+<text x="325" y="200" text-anchor="start">SVG 텍스트 예제</text>
+</g> -->
+<!-- 도형 회전 -->
+<!-- <g style=opacity:0.25 transform=rotate(45)>
+<rect x="30" y="20" width="200" height="100"/>
+<text x="325" y="200" text-anchor="start">SVG 텍스트 예제</text>
+</g> -->
+<!-- 도형 확대 -->
+<g transform=scale(2.0svg.html)>
+<rect x="30" y="20" width="200" height="100"/>
+<text x="325" y="200" text-anchor="start">SVG 텍스트 예제</text>
+</g>
+</svg>
+
+
+
+</body>
+</html>
