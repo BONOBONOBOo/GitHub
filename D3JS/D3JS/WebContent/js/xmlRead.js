@@ -2,17 +2,17 @@ window.addEventListener("load",function(){
 	
 	var dataSet=[ ];
 	
-/*	d3.csv("data.csv",function(data,i){
-		dataSet.push(data["item1"]);	
-		console.log(dataSet);
-		*/
-		
-		d3.csv("mydata.csv")
-		.then(function(data){
-		for(var i=0;i<data.length;i++){
-			dataSet.push(data[i].item1);
+
+		d3.xml("data.xml").then(function(xmlRoot){
+			
+			var xmlData=xmlRoot.querySelectorAll("data");
+			var salesRoot = xmlData[0];
+			var salesData = salesRoot.querySelectorAll("sales");
+			
+		for(var i=0;i<salesData.length;i++){
+			var d = salesData[i].firstChild.nodeValue;
+			dataSet.push(d);
 		}
-		//console.log(dataSet);
 
 	d3
 	.select("#myGraph")

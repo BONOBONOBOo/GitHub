@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+	svg{
+	width:500px; 
+	height:325px;
+	border:1px solid black;
+	}
+	.mark{fill:red;stroke:none;}
+	.axis path,
+	.axis line{
+	fill:none;
+	stroke:black;
+	}
+	
+	.grid{
+		stroke:gray;
+		stroke-dasharray:4,2;
+		shape-rendering:crispEdges;
+	}
+	.tip{
+		psition:absolute;
+		top:0px;
+		left:0px;
+		z-index:9999;
+		visibility:hidden;
+		border:1px solid balck;
+		background-color:yellow;
+		width:80px;
+		height:16px;
+		overflow:hidden;
+		text-align:center;
+		font-size:9pt;
+		font-family:Tohoma,Optomo,Hlvetick;
+		color:black;
+	}
+</style>
+</head>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="./js/sanpo.js"></script>
+<body>
+<h1>산포도 표시</h1>
+<svg id="myGraph"></svg>
+</body>
+</html>
