@@ -3,16 +3,22 @@
 
 
 import java.io.BufferedReader;
-
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import java.io.InputStreamReader;
 
 import java.nio.charset.Charset;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
+import java.util.Properties;
 
 import org.apache.http.HttpEntity;
 
@@ -60,7 +66,7 @@ public class crawling {
 		
 
 		
-
+/*
 		// 2. 가져올 HTTP 주소 세팅
 
 	    //HttpPost http = new HttpPost("http://finance.naver.com/item/coinfo.nhn?code=045510&target=finsum_more");
@@ -121,35 +127,104 @@ public class crawling {
 	    System.out.println("================================================================");
 
 	    // 11. Jsoup으로 파싱해보자.
-
-	    Document doc = Jsoup.parse(sb.toString());
-
 	    
+	    */
+		
+	    //Document doc = Jsoup.parse(sb.toString());
+		String kaclo="";
+	    String dang="";
+	    
+	    
+		
+		Connection conn = null;
+		Connection conn2 = null;
+		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from ing_cal_price";
+			String sql2 ="update ing_cal_price set ING_CAL=?,ING_NUM=? where ING_NAME =?";
+			conn = dbcon();
+			
+			stmt = conn.createStatement();
+			pstmt = conn2.prepareStatement(sql2);
+			
+			rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				
+				String key = rs.getString("ING_NAME");
+				
+				
+				
+				
+				
+			}
+			
+		}
+		catch(Exception e) {
+			System.out.println("Error : "+e.getMessage());
+		}
+		
+		
+		
+		Document doc = Jsoup.connect("https://www.fatsecret.kr/칼로리-영양소/search?q="+key).get();
+		
 
 	    // 참고 - Jsoup에서 제공하는 Connect 처리
 	    //Document doc2 = Jsoup.connect("http://finance.naver.com/item/coinfo.nhn?code=045510&target=finsum_more").get();
 	    //System.out.println(doc2.data());
 	    
 	    
-	    Elements items = doc.select(".prominent");
+	    Elements items = doc.select(".borderBottom a");
+	    String[] kcal = new String[] {"0"};
 	    for(int i = 0;i<items.size();i++) {
-	    	if(items.get(i).text().equals("밥")) {
-	    		Elements itemss = doc.select(".prominent div");
-	    		System.out.println(itemss.text());
+	    		if(items.get(i).text().equals(key)) {
+	    			kcal = items.get(i).parent().select("div").text().split(" ");
 	    	}
 	    }
-	    
-	   
-	    
-	    
-	    
-
-	    
-
-	    // 12. 얼마나 걸렸나 찍어보자
-
-	   
-
+	    for(int i = 0 ;i<kcal.length;i++) {
+	    	
+	    	if(kcal[i].contains("당")) {
+	    		for(int j=0;j<i+1;j++) {
+	    			dang=dang+(kcal[j]);
+	    		}
+	    	}
+	    	if(kcal[i].contains("칼로리")) {
+	    		kaclo=kcal[i+1];
+	    	}
+	    }
+	    System.out.println("단위  = "+dang);
+	    System.out.println("kcal = "+kaclo);
+	}
+	
+	public static Connection dbcon() {
+		Connection conn = null;
+		
+		try {
+			Properties prop = new Properties();
+			prop.load(new FileInputStream("F:/IT/JAVA/workspace/AAAAAAAAAAAAAAAAAAAAA/DBINFO.properties"));
+			
+			Class.forName(prop.getProperty("driver"));
+			conn = DriverManager.getConnection(prop.getProperty("url"),
+					prop.getProperty("user"),
+					prop.getProperty("pwd"));
+		}
+		catch(ClassNotFoundException cnfe) {
+			System.out.println("클래스를 찾을수없습니다.");
+		}
+		catch(SQLException e) {
+			System.out.println(e.getMessage());
+		} 
+		catch (IOException e) {//��� ���� ����
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
+		return conn;
 	}
 
 }
