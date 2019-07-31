@@ -55,7 +55,13 @@
 <!--[if lt IE 9]>
 <script src="js/respond.min.js"></script>
 <![endif]-->
-
+<script type="text/javascript">
+function join(){
+	document.joinFrom.action="./join.do";
+	document.joinFrom.method="post";
+	document.joinFrom.submit(); 
+}
+</script>
 </head>
 <body>
 
@@ -84,47 +90,67 @@
 	   				<div class="slider-text-inner text-center">
 	   					<div class="desc">
 	   						<span class="icon"><i class="flaticon-cutlery"></i></span>
+	   						
+	   						<form name="joinFrom">
 									   <table style="margin:auto;">
 									   
-									   <h3 style="color:white; font-family:ë°°ë¬ìë¯¼ì¡± ëí;">íìê°ì</h3>
+									   <h3 style="color:white; font-family:ë°°ë¬ìë¯¼ì¡± ëí;">회원가입</h3>
 									   
 					                   
 					                   <tr style="padding-top: 50px;">
-					                      <td style="color:white;">ìì´ë</td>
-					                      <td><input  id="userpwd" name="userpwd" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+					                      <td style="color:white;">아이디</td>
+					                      <td><input  id="userid" name="userid" style =" opacity: 0.7;" size="21" maxlength="12"/></td>
 						                </tr>
 					                   <tr height="5px"/>
 					                    <tr >
-					                      <td style="color:white;">ë¹ë°ë²í¸</td>
-					                      <td><input type="password" id="userpwd" name="userpwd" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+					                      <td style="color:white;">비밀번호</td>
+					                      <td><input type="password" id="userpass" name="userpass" style =" opacity: 0.7;" size="21" maxlength="12"/></td>
 						                </tr>
 						               <tr height="5px"/> 
 						                <tr>
-					                      <td style="color:white;">ì´ë¦</td>
-					                      <td><input  id="name" name="name" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+					                      <td style="color:white;">이름</td>
+					                      <td><input  id="username" name="username" style =" opacity: 0.7;" size="21" maxlength="12"/></td>
 						                </tr>
 						                <tr height="5px"/>
 						                <tr>
-					                      <td style="color:white;">í¤</td>
-					                      <td><input  id="height" name="height" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+					                      <td style="color:white;">키</td>
+					                      <td><input  id="height" name="height" style =" opacity: 0.7;" size="21" maxlength="12"/></td>
 						                </tr>
 						                <tr height="5px"/>
 						                <tr>
-					                      <td style="color:white;">ëª¸ë¬´ê²</td>
-					                      <td><input  id="weight" name="weight" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+					                      <td style="color:white;">몸무게</td>
+					                      <td><input  id="weight" name="weight" style =" opacity: 0.7;" size="21" maxlength="12"/></td>
 						                </tr>
-						                <tr height="5px"/>
 						                
-
+						                <tr height="5px"/>
+						                <tr>
+						                <td style="color:white;">생년월일</td>
+						                <td>
+						                <input  id="year" name="year" style =" opacity: 0.7;" size="5" maxlength="12"/>
+						                <input  id="month" name="month" style =" opacity: 0.7;" size="2" maxlength="12"/>
+						                <input  id="day" name="day" style =" opacity: 0.7;" size="2" maxlength="12"/></td>
+						                </tr>
+						                <tr height="5px"/>
+										
+										<tr>
+										<td style="color:white;">성별</td>
+										<td>
+										<select name="sex" style="width:200px;opacity: 0.9;">
+					                      	  <option value="0" selected="selected">남자</option>
+											  <option value="1">여자</option>
+										</select>
+										</td>
+										</tr>
 						           
 						                <tr height="10px"/>
 						                
 						                <tr>
 						                <td colspan="2" align="center">
-						                    <a style="color:white; margin-left: 45px">íìê°ì</a>
-						                    <a style="color:white;  margin-left: 15px">ì·¨ì</a>
+						                    <a style="color:white; margin-left: 45px">취소</a>
+						                    <a onclick="join()" style="color:white;  margin-left: 15px">회원가입</a>
 										</td></tr>
 						                </table>
+						          </form>      
 			   					<div class="desc2"></div>
 		   					</div>
 		   				</div>

@@ -1,5 +1,7 @@
 package lab.spring.food.model;
 
+import java.sql.Date;
+
 public class UserVO {
 	
 	String userid;
@@ -7,7 +9,29 @@ public class UserVO {
 	float weight;
 	float height;
 	float bmi;
+	int age;
+	Date birth;
+	boolean sex;
 	
+	
+	public Date getBirth() {
+		return birth;
+	}
+	public boolean isSex() {
+		return sex;
+	}
+	public void setBirth(Date birth) {
+		this.birth = birth;
+	}
+	public void setSex(boolean sex) {
+		this.sex = sex;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	public String getUserid() {
 		return userid;
 	}
@@ -42,7 +66,7 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [userid=" + userid + ", userpass=" + userpass + ", weight=" + weight + ", height=" + height
-				+ ", bmi=" + bmi + "]";
+				+ ", bmi=" + bmi + ", age=" + age + ", birth=" + birth + ", sex=" + sex + "]";
 	}
 	
 	

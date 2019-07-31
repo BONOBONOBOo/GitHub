@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>3bob login</title>
+	<title>3bob joins</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -57,23 +56,7 @@
 <script src="js/respond.min.js"></script>
 <![endif]-->
 
-
-<script type="text/javascript">
-function login(){
-	document.loginForm.action="./login.do";
-	document.loginForm.method="post";
-	document.loginForm.submit();
-}
-
-function join(){
-	document.loginForm.action="./join.do";
-	document.loginForm.method="get";
-	document.loginForm.submit(); 
-}
-</script>
 </head>
-
-
 <body>
 
 
@@ -101,25 +84,47 @@ function join(){
 	   				<div class="slider-text-inner text-center">
 	   					<div class="desc">
 	   						<span class="icon"><i class="flaticon-cutlery"></i></span>
-	   							<form name="loginForm">
 									   <table style="margin:auto;">
- 											<h3 style="color:white; font-family:ë°°ë¬ìë¯¼ì¡± ëí;">회원가입</h3>
-					                    <tr>
-					                      <td style="color:white;">아이디</td>
+									   
+									   <h3 style="color:white; font-family:ë°°ë¬ìë¯¼ì¡± ëí;">회원가입</h3>
+									   
+					                   
+					                   <tr style="padding-top: 50px;">
+					                      <td style="color:white;">아이디</td>
 					                      <td><input  id="userid" name="userid" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
-					                    </tr>
-					                    <tr>
+						                </tr>
+					                   <tr height="5px"/>
+					                    <tr >
 					                      <td style="color:white;">비밀번호</td>
 					                      <td><input type="password" id="userpwd" name="userpwd" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
 						                </tr>
-						             
-						                    <td colspan="3" align="center">
-						                    <a onclick="join()" style="color:white; margin-left: 45px"> 회원가입  </a> 
-						               
-						                    <a onclick="login()" style="color:white; margin-left: 20px">  &nbsp;로그인</a>
-											</td>
+						               <tr height="5px"/> 
+						                <tr>
+					                      <td style="color:white;">이름</td>
+					                      <td><input  id="username" name="username" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+						                </tr>
+						                <tr height="5px"/>
+						                <tr>
+					                      <td style="color:white;">키</td>
+					                      <td><input  id="height" name="height" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+						                </tr>
+						                <tr height="5px"/>
+						                <tr>
+					                      <td style="color:white;">몸무게</td>
+					                      <td><input  id="weight" name="weight" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
+						                </tr>
+						                <tr height="5px"/>
+						                
+
+						           
+						                <tr height="10px"/>
+						                
+						                <tr>
+						                <td colspan="2" align="center">
+						                    <a style="color:white; margin-left: 45px">취소</a>
+						                    <a style="color:white;  margin-left: 15px">회원가입</a>
+										</td></tr>
 						                </table>
-						        </form>
 			   					<div class="desc2"></div>
 		   					</div>
 		   				</div>
@@ -131,11 +136,9 @@ function join(){
 
 
 	  	</ul>
-
+	  	
   	</div>
 </aside>
-
-
 
 
 
@@ -168,3 +171,4 @@ function join(){
 
 	</body>
 </html>
+

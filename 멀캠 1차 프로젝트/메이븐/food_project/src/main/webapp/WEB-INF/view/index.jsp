@@ -92,7 +92,8 @@
 					                   
 					                   <tr style="padding-top: 50px;">
 					                      <td style="color:white;">필요칼로리</td>
-					                      <td><input  id="RequireCal" name="RequireCal" value="1600" style =" opacity: 0.7;text-align:center;" size="15" maxlength="12" readonly/> <td style="color:white;"> kcal </td> </td>
+					                      
+					                      <td><input  id="RequireCal" name="RequireCal"  value="${kcal}" style =" width:150px; opacity: 0.7;text-align:center;" size="15" maxlength="12" readonly/> <td style="color:white;">kcal</td> </td>
 						                </tr>
 
 	
@@ -102,26 +103,29 @@
 						                <tr height="5px"/>
 						                <tr>
 					                      <td style="color:white;">희망칼로리</td>
-					                      <td><input  id="DesiredCal" name="DesiredCal" value="1600" style =" opacity: 0.7; text-align:right;" size="7" maxlength="5"/> 
-										<input  id="DesiredCal" name="DesiredCal" value="1600" style =" opacity: 0.7; text-align:right;" size="7" maxlength="5"/> 
-					                       </td> 	
-
-					        
-
-
+					                      <td>
+					                      <select name="desireCal" style="width:150px">
+					                          <option value="0 1200" selected="selected">1200kcal 이하</option>
+											  <option value="1200 1600" selected="selected">1200kcal~1600kcal</option>
+											  <option value="1600 2000">1600kcal~2000kcal</option>
+											  <option value="2000 2400" >2000kcal~2400kcal</option>
+											  <option value="2400">2400kcal 이상</option>
+										  </select> 
+					                      </td> 	
 					                      	<td style="color:white;"></td> 		
-
-					  
-					
-
-
 						                </tr>
 						                <tr height="5px"/>
 						                <tr>
 					                      <td style="color:white;">희망가격</td>
-					                      <td><input  id="HopePrice" name="HopePrice" style =" opacity: 0.7; text-align:center;" size="7" maxlength="5"  /></td>
-					                      <td><input  id="HopePrice" name="HopePrice" style =" opacity: 0.7; text-align:center;" size="7" maxlength="5"  /></td>					                      
-					                      <td style="color:white;"> 원  </td>
+					                      <td>
+					                      <select name="desirePrice" style="width:150px">
+					                      	  <option value="0 3000" selected="selected">3000원 이하</option>
+											  <option value="3000 4000" selected="selected">3000원~4000원</option>
+											  <option value="4000 5000">4000원~5000원</option>
+											  <option value="5000 6000" >5000원~6000원</option>
+											  <option value="6000" >6000원 이상</option>
+										  </select>
+										  </td>
 						                </tr>						                
 						                <tr height="5px"/>
 						                
