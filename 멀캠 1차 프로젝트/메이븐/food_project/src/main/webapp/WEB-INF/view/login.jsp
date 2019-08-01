@@ -105,7 +105,7 @@ function join(){
 									   <table style="margin:auto;">
  											<h3 style="color:white; font-family:ë°°ë¬ìë¯¼ì¡± ëí;">회원가입</h3>
 					                    <tr>
-					                      <td style="color:white;">아이디</td>
+					                      <td style="color:white;">아이디</td>
 					                      <td><input  id="userid" name="userid" style =" opacity: 0.7;" size="15" maxlength="12"/></td>
 					                    </tr>
 					                    <tr>

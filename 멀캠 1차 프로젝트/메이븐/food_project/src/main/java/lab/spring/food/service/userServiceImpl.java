@@ -15,9 +15,24 @@ public class userServiceImpl implements userService{
 	
 	@Override
 	public UserVO login(String userid, String userpass) {
-		
 		return dao.login(userid, userpass);
 	}
+
+
+	@Override
+	public int join(UserVO vo) {
+		return dao.join(vo);
+	}
+
+
+	@Override
+	public int hopeUpdate(String userid, String hopeKcal) {
+		
+		return dao.hopeUpdate(userid, hopeKcal);
+	}
+	
+	
+	
 	
 	
 

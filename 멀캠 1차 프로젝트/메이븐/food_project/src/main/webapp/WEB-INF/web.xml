@@ -6,6 +6,10 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
 xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
+<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+</welcome-file-list>
+
 <filter>
           <filter-name>encodingFilter</filter-name>
           <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

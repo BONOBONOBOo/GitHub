@@ -28,5 +28,20 @@ public class UserDao {
 		return vo;
 	}
 	
+	public int join(UserVO vo) {
+
+		return sqlSession.insert("lab.mybatis.mappers.UserMapper.Join",vo);
+	}
+	
+	public int hopeUpdate(String userid,String hopeKcal) {
+		
+		HashMap<String,String> hashmap = new HashMap<String, String>();
+		
+		hashmap.put("userid", userid);
+		hashmap.put("hopeKcal",hopeKcal);
+		
+		return sqlSession.insert("lab.mybatis.mappers.UserMapper.HopeUpdate",hashmap);
+	}
+	
 
 }

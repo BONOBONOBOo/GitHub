@@ -8,6 +8,16 @@
     select * from userinfo where userid = #{uid} and userpass = #{upwd}
   </select>
   
+  <insert id="Join" parameterType="lab.spring.food.model.UserVO">
+  	insert into userinfo
+  	values(#{userid},#{userpass},#{weight},#{height},
+  	#{bmi},#{username},#{birth},#{sex},#{hopeKcal})
+  </insert>
+  
+  <update id="HopeUpdate" parameterType="hashmap">
+  	update userinfo set HOPEKCAL = #{hopeKcal} where USERID = #{userid}
+  </update>
+  
   <!-- <select id="findUser" resultType="lab.spring.web.model.UserVO" parameterType="hashmap">
   	select * from userinfo where
   	<if test="userid != null">

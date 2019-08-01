@@ -57,12 +57,15 @@
 <![endif]-->
 <script type="text/javascript">
 function join(){
-	document.joinFrom.action="./join_detail.do";
+	document.joinFrom.action="./join.do";
 	document.joinFrom.method="post";
 	document.joinFrom.submit(); 
 }
+
 function cancel(){
-	history.back();
+	document.joinFrom.action="./index.do";
+	document.joinFrom.method="get";
+	document.joinFrom.submit(); 
 }
 </script>
 </head>

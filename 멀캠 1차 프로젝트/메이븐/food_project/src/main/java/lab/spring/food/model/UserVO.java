@@ -6,31 +6,37 @@ public class UserVO {
 	
 	String userid;
 	String userpass;
+	String username;
 	float weight;
 	float height;
 	float bmi;
-	int age;
 	Date birth;
-	boolean sex;
+	String sex;
+	int hopeKcal;
 	
-	
+	public int getHopeKcal() {
+		return hopeKcal;
+	}
+	public void setHopeKcal(int hopeKcal) {
+		this.hopeKcal = hopeKcal;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public Date getBirth() {
 		return birth;
-	}
-	public boolean isSex() {
-		return sex;
 	}
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
-	public void setSex(boolean sex) {
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
 		this.sex = sex;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
 	}
 	public String getUserid() {
 		return userid;
@@ -65,10 +71,9 @@ public class UserVO {
 	
 	@Override
 	public String toString() {
-		return "UserVO [userid=" + userid + ", userpass=" + userpass + ", weight=" + weight + ", height=" + height
-				+ ", bmi=" + bmi + ", age=" + age + ", birth=" + birth + ", sex=" + sex + "]";
+		return "UserVO [userid=" + userid + ", userpass=" + userpass + ", username=" + username + ", weight=" + weight
+				+ ", height=" + height + ", bmi=" + bmi + ", birth=" + birth + ", sex=" + sex + ", hopeKcal=" + hopeKcal
+				+ "]";
 	}
 	
-	
-
 }

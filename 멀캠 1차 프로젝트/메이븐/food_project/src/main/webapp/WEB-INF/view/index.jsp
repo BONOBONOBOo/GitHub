@@ -1,10 +1,11 @@
+<%@page import="lab.spring.food.model.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>3bob index</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,9 +57,10 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	</head>
 	<body>
+	<%UserVO vo = (UserVO)session.getAttribute("vo"); %>
 
 
 	
@@ -89,20 +91,24 @@
 									   
 									   <h3 style="color:white; font-family:배달의민족 도현;">레시피 조회</h3>
 									   
-					                   
 					                   <tr style="padding-top: 50px;">
-					                      <td style="color:white;">필요칼로리</td>
+					                      <td style="color:white;">희망 칼로리</td>
+					                      <%
+					                      if(vo==null){
+					                    	  out.println("<td><input  id='RequireCal' name='RequireCal'  value='' style =' width:150px; opacity: 0.7;text-align:center;' size='15' maxlength='12' readonly/><td style='color:white;'>kcal</td> </td>");
+					                      }
 					                      
-					                      <td><input  id="RequireCal" name="RequireCal"  value="${kcal}" style =" width:150px; opacity: 0.7;text-align:center;" size="15" maxlength="12" readonly/> <td style="color:white;">kcal</td> </td>
+					                      else{
+					                    	  out.println("<td><input  id='RequireCal' name='RequireCal'  value='"+vo.getHopeKcal()+"' style =' width:150px; opacity: 0.7;text-align:center;' size='15' maxlength='12' readonly/><td style='color:white;'>kcal</td> </td>");
+					                      }
+					                      %>	
+					                      
 						                </tr>
-
-	
-
 						                </tr>
 
 						                <tr height="5px"/>
 						                <tr>
-					                      <td style="color:white;">희망칼로리</td>
+					                      <td style="color:white;">하루 칼로리</td>
 					                      <td>
 					                      <select name="desireCal" style="width:150px">
 					                          <option value="0 1200" selected="selected">1200kcal 이하</option>
@@ -115,27 +121,15 @@
 					                      	<td style="color:white;"></td> 		
 						                </tr>
 						                <tr height="5px"/>
-						                <tr>
-					                      <td style="color:white;">희망가격</td>
-					                      <td>
-					                      <select name="desirePrice" style="width:150px">
-					                      	  <option value="0 3000" selected="selected">3000원 이하</option>
-											  <option value="3000 4000" selected="selected">3000원~4000원</option>
-											  <option value="4000 5000">4000원~5000원</option>
-											  <option value="5000 6000" >5000원~6000원</option>
-											  <option value="6000" >6000원 이상</option>
-										  </select>
-										  </td>
-						                </tr>						                
-						                <tr height="5px"/>
+						                
 						                
 						                <tr>
 					                     <td style="color:white;">식사패턴</td>
 
 						                <td style="color:white;" >
-						                <input style="margin:auto;" type='checkbox' name='breakfast' value='breakfast' />아침
-						                <input type='checkbox' name='lunch' value='lunch' />점심
-						                <input type='checkbox' name='dinner' value='dinner' />저녁
+						                <input style="margin:auto;" type='checkbox' name='breakfast' value='breakfast' checked="checked"/>아침
+						                <input type='checkbox' name='lunch' value='lunch' checked="checked"/>점심
+						                <input type='checkbox' name='dinner' value='dinner' checked="checked"/>저녁
 						                <td>
 						             	</tr>
 						           
@@ -143,7 +137,17 @@
 						                
 						                <tr>
 						                <td colspan="2" align="center">
-					   					<p><a href="recipe.html" class="btn btn-primary btn-lg btn-learn" style="font-family:HY견고딕;">레시피 조회</a></p>
+						                <p>
+						                <% 
+						                if(vo==null){
+						                	out.println("<a href='./login.do' style='color:white; margin-left: 45px'>로그인</a>");
+						                }
+						                else{
+						                	out.println("<a href='./logout.do' style='color:white; margin-left: 45px'>로그아웃</a>");
+						                }
+						                %>
+						                <a onclick="join()" style="color:white;  margin-left: 15px">레피시 조회</a>
+					   					</p>
 
 										</td></tr>
 						                </table>
