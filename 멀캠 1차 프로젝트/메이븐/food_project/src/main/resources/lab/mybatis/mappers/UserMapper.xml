@@ -8,6 +8,10 @@
     select * from userinfo where userid = #{uid} and userpass = #{upwd}
   </select>
   
+  <select id="getUserinfo" resultType ="lab.spring.food.model.UserVO">
+  	select * from userinfo where userid = #{userid}
+  </select>
+  
   <insert id="Join" parameterType="lab.spring.food.model.UserVO">
   	insert into userinfo
   	values(#{userid},#{userpass},#{weight},#{height},

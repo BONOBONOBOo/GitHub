@@ -59,7 +59,6 @@
 	<script type="text/javascript">
 	
 	function avgWeight(bmi){
-		
 		var height = document.getElementById("userHeight").innerHTML;
 		var ine = Math.round(height*height*bmi);
 		

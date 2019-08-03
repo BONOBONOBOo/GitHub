@@ -30,6 +30,12 @@ public class userServiceImpl implements userService{
 		
 		return dao.hopeUpdate(userid, hopeKcal);
 	}
+
+
+	@Override
+	public UserVO getUserinfo(String userid){
+		return dao.getUserinfo(userid);
+	}
 	
 	
 	

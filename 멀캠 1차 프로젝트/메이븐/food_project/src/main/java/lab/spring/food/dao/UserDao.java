@@ -43,5 +43,9 @@ public class UserDao {
 		return sqlSession.insert("lab.mybatis.mappers.UserMapper.HopeUpdate",hashmap);
 	}
 	
+	public UserVO getUserinfo(String userid) {
+		return sqlSession.selectOne("lab.mybatis.mappers.UserMapper.getUserinfo",userid);
+	}
+	
 
 }

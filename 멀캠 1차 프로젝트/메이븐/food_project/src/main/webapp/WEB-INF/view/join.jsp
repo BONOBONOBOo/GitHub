@@ -57,7 +57,7 @@
 <![endif]-->
 <script type="text/javascript">
 function join(){
-	document.joinFrom.action="./join_detail.do";
+	document.joinFrom.action="./join.do";
 	document.joinFrom.method="post";
 	document.joinFrom.submit(); 
 }

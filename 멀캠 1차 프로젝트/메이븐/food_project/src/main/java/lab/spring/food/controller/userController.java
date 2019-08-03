@@ -192,17 +192,22 @@ public class userController {
 	@RequestMapping(value="/join_detail.do", method=RequestMethod.GET)
 	public ModelAndView detailJoin(
 			@RequestParam("userResultKcal") String hopeCal,
-			@RequestParam("userid") String userid
+			@RequestParam("userid") String userid,
+			HttpServletRequest request
 			) {
 		ModelAndView mav = new ModelAndView();
-		
-		int result = service.hopeUpdate(userid, hopeCal);
-		System.out.println(result);
-		mav.addObject("hopeCal",hopeCal);
+		HttpSession session = request.getSession();
+		UserVO vo = service.getUserinfo(userid);
+		vo.setHopeKcal(Integer.parseInt(hopeCal));
+		session.setAttribute("vo", vo);
+		System.out.println(vo.getHopeKcal());
+		service.hopeUpdate(userid, hopeCal);
 		mav.setViewName("index");
 		return mav;
 	}
 		
+
+	
 	
 	
 }
