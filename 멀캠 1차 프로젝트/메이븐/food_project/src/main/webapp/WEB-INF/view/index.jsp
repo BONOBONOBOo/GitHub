@@ -268,16 +268,17 @@
 						                <tr height="5px"/>
 						                <tr>
 					                      <td>하루 칼로리</td>
+					                      
 					                      <td>
 					                      <select name="desireCal" style="width:150px">
 					                          <option value="0 1200" selected="selected">1200kcal 이하</option>
-											  <option value="1200 1600" selected="selected">1200kcal~1600kcal</option>
+											  <option value="1200 1600">1200kcal~1600kcal</option>
 											  <option value="1600 2000">1600kcal~2000kcal</option>
 											  <option value="2000 2400" >2000kcal~2400kcal</option>
 											  <option value="2400">2400kcal 이상</option>
-										  </select> 
-					                      </td> 	
-					                      	<td style="color:white;"></td> 		
+										  </select>
+					                      </td>
+					                      <td style="color:white;"></td> 		
 						                </tr>
 						                <tr height="30px"/>
 						                

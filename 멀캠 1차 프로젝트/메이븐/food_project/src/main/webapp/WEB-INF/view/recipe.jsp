@@ -46,7 +46,34 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+	
+	<script type="text/javascript">
+	function detail(time){
+		//hashmap['아침']
+		//var vo = ${hashmap["아침"].recipe_name};
+		
+		
+		//console.log(vo);
+		
+		if(time == "아침"){
+			//document.morningRrecipe.action="./detail_recipe.do?detailVO="+${vo.recipe_name};
+			document.morningRrecipe.action="./detail_recipe.do";
+			document.morningRrecipe.method="post";
+			document.morningRrecipe.submit(); 
+		}
+		else if(time == '점심'){
+			
+		}
+		else if(time == '저녁'){
+			
+		}
+		
+		
+	}
+	
+	
+	</script>
+	
 	</head>
 	<body>
 
@@ -66,49 +93,57 @@
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
 						<span class="icon"><i class="flaticon-cutlery"></i></span>
-						<h2>ì¤ëì íë£¨ì¸ë¼</h2>
-						<p>ë´ì©</p>
+						<h2>추천 -1-</h2>
+						<p>상세 내용</p>
 					</div>
 				</div>
+				<form name=morningRrecipe>
 				<div class="row">
 					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center"> ì ì¹¨ </h2>
+						<h2 style="text-align:center">아침</h2>
 						<div class="dish-wrap">
 							<div class="wrap">
-								<div class="dish-img" style="background-image: url(images/dish-1.jpg);"></div>
+								<div class="dish-img" style="background-image: url(${hashmap['아침'].img_url});"></div>
 								<div class="desc">
-									<h2><a href="#">ìì ì´ë¦</a></h2>
-									<h2><a href="#">ë ìí¼</a></h2>
+								<input type=hidden id=detailVO name=detailVO value=${hashmap["아침"].recipe_name} />
+									<h2><a onclick='detail("아침")' href="#">${hashmap["아침"].recipe_name}</a></h2>
+									<br><br><br>
+									<h2><a onclick='detail("아침")' href="#">${hashmap["아침"].intro}</a></h2>
 								</div>
 							</div>
 						</div>
 					</div>
+					</form>
+					<form name=lauchRrecipe>
 					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center"> ì  ì¬ </h2>
+						<h2 style="text-align:center">점심</h2>
 						<div class="dish-wrap">
 							<div class="wrap">
-								<div class="dish-img" style="background-image: url(images/dish-2.jpg);"></div>
+								<div class="dish-img" style="background-image: url(${hashmap['점심'].img_url});"></div>
 								<div class="desc">
-									<h2><a href="#">ìì ì´ë¦</a></h2>
-									<h2><a>ë ìí¼</a> <br> <a>ì°¸ê¹¨ë¹µìì ìì ê³ ê¸° í¨í° ëì¥ í¹ë³í ìì¤ ììì¶ ì¹ì¦ í¼í´ ìíê¹ì§</a></h2>
-								
-
+									<h2><a onclick='detail("점심")' href="#">${hashmap["점심"].recipe_name}</a></h2>
+									<br><br><br>
+									<h2><a onclick='detail("점심")' >${hashmap["점심"].intro}</a></h2>
 								</div>
 							</div>
 						</div>
 					</div>
+					</form>
+					<form name=dinnerRrcipe>
 					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center"> ì  ë </h2>
+						<h2 style="text-align:center">점심</h2>
 						<div class="dish-wrap">
 							<div class="wrap">
-								<div class="dish-img" style="background-image: url(images/dish-3.jpg);"></div>
+								<div class="dish-img" style="background-image: url(${hashmap['저녁'].img_url});"></div>
 								<div class="desc">
-									<h2><a href="#">ìì ì´ë¦</a></h2>
-									<h2><a href="#">ë ìí¼</a></h2>
+									<h2><a onclick='detail("저녁")' href="#">${hashmap["저녁"].recipe_name}</a></h2>
+									<br><br><br>
+									<h2><a onclick='detail("저녁")'>${hashmap["저녁"].intro}</a></h2>
 								</div>
 							</div>
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -120,13 +155,13 @@
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
 						<span class="icon"><i class="flaticon-cutlery"></i></span>
-						<h2>ì´ ë©ë´ë ì¢ìë¯</h2>
-						<p>ë´ì©</p>
+						<h2>추천 -2-</h2>
+						<p>상세 내용</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center"> ì ì¹¨ </h2>
+						<h2 style="text-align:center">아침</h2>
 						<div class="dish-wrap">
 							<div class="wrap">
 								<div class="dish-img" style="background-image: url(images/dish-1.jpg);"></div>
@@ -138,7 +173,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center"> ì  ì¬ </h2>
+						<h2 style="text-align:center">점심</h2>
 						<div class="dish-wrap">
 							<div class="wrap">
 								<div class="dish-img" style="background-image: url(images/dish-2.jpg);"></div>
@@ -152,7 +187,7 @@
 						</div>
 					</div>
 					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center"> ì  ë </h2>
+						<h2 style="text-align:center">저녁</h2>
 						<div class="dish-wrap">
 							<div class="wrap">
 								<div class="dish-img" style="background-image: url(images/dish-3.jpg);"></div>

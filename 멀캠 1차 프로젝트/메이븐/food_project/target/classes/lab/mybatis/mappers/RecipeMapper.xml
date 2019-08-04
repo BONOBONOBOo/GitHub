@@ -6,7 +6,7 @@
 <mapper namespace="lab.mybatis.mappers.RecipeMapper">
 	<select id="getRecipeOne" resultType="lab.spring.food.model.RecipeVO" parameterType="int" >
 	    select * from recipe where TOTAL_CAL between 0 and #{minCal}
-	  </select>
+	</select>
 	
 
 
