@@ -4,9 +4,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lab.mybatis.mappers.RecipeMapper">
+	
 	<select id="getRecipeOne" resultType="lab.spring.food.model.RecipeVO" parameterType="int" >
 	    select * from recipe where TOTAL_CAL between 0 and #{minCal}
 	</select>
+	
+	<select id="getRecipe" resultType="lab.spring.food.model.RecipeVO" parameterType="string" >
+		select * from recipe where recipe_name=#{recipename}
+	</select>
+	
+	<select id="getStarPoint" resultType="lab.spring.food.model.CommentVO" parameterType="string" >
+		select * from RECIPE_COMMENT where recipe_name=#{recipename}
+	</select>
+	
+	<insert id="addComment" parameterType="lab.spring.food.model.CommentVO">
+		insert into RECIPE_COMMENT values(RECIPE_COMMENT_SEQ.nextval,#{recipe_name},#{userid},#{recipe_comment},sysdate,#{rating})
+	</insert>
+	
 	
 
 

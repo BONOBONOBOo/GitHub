@@ -90,7 +90,7 @@
 	</script>
 	</head>
 	<body>
-
+	
 	<nav id="colorlib-main-nav" role="navigation">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
 		<div class="js-fullheight colorlib-table">
@@ -106,13 +106,17 @@
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="menu.html">menus</a></li>
-							<li><a href="specialties.html">specialties</a></li>
-							<li><a href="reservation.html">Reservation</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="about.html">About us</a></li>
-							<li class="active"><a href="contact.html">Contact</a></li>
+							<c:if test="${vo.userid eq null}">
+							<li><a href="login.do">로그인</a></li>
+							<li class="active"><a href="join.do">회원가입</a></li>
+							</c:if>
+							<li><a href="reservation.html">자유 레시피</a></li>
+							<li><a href="index.do">레시피 조회</a></li>
+							
+							<c:if test="${vo.userid ne null}">
+							<li><a href="myaccount.do">내 정보</a></li>
+							<li><a href="logout.do">로그아웃</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>
@@ -120,13 +124,15 @@
 		</div>
 	</nav>
 	
+	
+	
 	<div id="colorlib-page">
 		<header>
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="colorlib-navbar-brand">
-							<a class="colorlib-logo" href="index.html"><i class="flaticon-cutlery"></i><span>Lu</span><span>to</span></a>
+							<a class="colorlib-logo" href="index.do"><i class="flaticon-cutlery"></i><span>하루</span><span>세끼</span></a>
 						</div>
 						<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 					</div>

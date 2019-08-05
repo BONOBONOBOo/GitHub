@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lab.spring.food.dao.RecipeDao;
+import lab.spring.food.model.CommentVO;
 import lab.spring.food.model.RecipeVO;
 
 
@@ -20,5 +21,23 @@ public class recipeServiceImpl implements recipeService{
 		
 		return dao.getrecipeOne(minCal);
 	}
+
+	@Override
+	public RecipeVO getrecipe(String recipename) {
+		return dao.getrecipe(recipename);
+	}
+
+	@Override
+	public List<CommentVO> getstarPoint(String recipename) {
+		return dao.getstarPoint(recipename);
+	}
+
+	@Override
+	public int addComment(CommentVO commentvo) {
+		
+		return dao.addComment(commentvo);
+	}
+	
+	
 
 }

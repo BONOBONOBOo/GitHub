@@ -4,13 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import javax.websocket.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import lab.spring.food.model.CommentVO;
 import lab.spring.food.model.RecipeHope;
 import lab.spring.food.model.RecipeVO;
 import lab.spring.food.service.recipeService;
@@ -22,6 +27,7 @@ public class recipeController {
 	
 	@Autowired
 	recipeService service;
+	
 	
 	@RequestMapping(value="/recipeSearch.do")
 	public ModelAndView detail(
@@ -55,9 +61,6 @@ public class recipeController {
 			minCal = Integer.parseInt(desireCalarray[0]);
 			minunit = Math.round(minCal/10);
 			
-			System.out.println("recipehope = "+recipehope);
-			System.out.println("minunit = "+minunit);
-			
 			if(breakfast != null && launch != null && dinner!=null) {
 				//4.4.2
 				breakfastRecipe = service.getrecipeOne(minCal*4);
@@ -89,7 +92,7 @@ public class recipeController {
 			System.out.println("lunchRecipe.size() = "+lunchRecipe.size());
 			System.out.println("dinnerRecipe.size() = "+dinnerRecipe.size());
 			*/
-			System.out.println(hashmap);
+			
 				
 
 		}
@@ -138,9 +141,31 @@ public class recipeController {
 				@RequestParam("detailVO") String recipe
 				) {
 			ModelAndView mav = new ModelAndView();
+			RecipeVO recipevo = new RecipeVO();
 			
-			System.out.println(recipe);
 			
+			List<CommentVO> starpoint = service.getstarPoint(recipe);
+			recipevo = service.getrecipe(recipe);
+			float star=(float) 0.0;
+			for(int i = 0;i<starpoint.size();i++) {
+				star += Float.parseFloat(starpoint.get(i).getRating());
+			}
+			int staravg = (int)star/starpoint.size();
+			//System.out.println("staravg = "+staravg);
+			
+			String recipeOrder[] = recipevo.getOrder_detail().split("\\. ");
+			
+			for(int i = 0 ;i<recipeOrder.length;i++) {
+				System.out.println(recipeOrder[i]);
+				System.out.println();
+			}
+			
+			mav.addObject("comment",starpoint);
+			mav.addObject("ordernum",recipeOrder.length);
+			mav.addObject("recipeOrder",recipeOrder);
+			mav.addObject("star",staravg);
+			mav.addObject("Recipe",recipevo);
+			mav.setViewName("recipe_detail");
 			return mav;
 		}
 	

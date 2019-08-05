@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import lab.spring.food.dao.UserDao;
 import lab.spring.food.model.UserVO;
+import lab.spring.food.model.userWeightVO;
 
 @Service("userService")
 public class userServiceImpl implements userService{
@@ -36,6 +37,26 @@ public class userServiceImpl implements userService{
 	public UserVO getUserinfo(String userid){
 		return dao.getUserinfo(userid);
 	}
+
+
+	@Override
+	public int setUserWeight(String userid, String date, String weight) {
+		return dao.setUserWeight(userid, date, weight);
+	}
+
+
+	@Override
+	public userWeightVO getWeight(String userid) {
+		return dao.getWeight(userid);
+	}
+
+
+	@Override
+	public int WeightUpdate(UserVO vo) {
+		return dao.WeightUpdate(vo);
+	}
+	
+	
 	
 	
 	

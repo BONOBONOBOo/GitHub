@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import lab.spring.food.model.CommentVO;
 import lab.spring.food.model.RecipeVO;
 import lab.spring.food.model.UserVO;
 
@@ -19,4 +20,15 @@ public class RecipeDao {
 		return sqlSession.selectList("lab.mybatis.mappers.RecipeMapper.getRecipeOne",minCal);
 	}
 	
+	public RecipeVO getrecipe(String recipename) {
+		return sqlSession.selectOne("lab.mybatis.mappers.RecipeMapper.getRecipe",recipename);
+	}
+	
+	public List<CommentVO> getstarPoint(String recipename) {
+		return sqlSession.selectList("lab.mybatis.mappers.RecipeMapper.getStarPoint",recipename);
+	}
+	
+	public int addComment(CommentVO commentvo) {
+		return sqlSession.insert("lab.mybatis.mappers.RecipeMapper.addComment",commentvo);
+	}
 }

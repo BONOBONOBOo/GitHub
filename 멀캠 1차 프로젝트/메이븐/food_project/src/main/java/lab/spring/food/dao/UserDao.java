@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import lab.spring.food.model.UserVO;
+import lab.spring.food.model.userWeightVO;
 
 
 
@@ -46,6 +47,31 @@ public class UserDao {
 	public UserVO getUserinfo(String userid) {
 		return sqlSession.selectOne("lab.mybatis.mappers.UserMapper.getUserinfo",userid);
 	}
+	
+	public int setUserWeight(String userid,String date,String weight) {
+		
+		HashMap<String,String> hashmap = new HashMap<String, String>();
+		
+		System.out.println(userid);
+		System.out.println(date);
+		System.out.println(weight);
+		
+		hashmap.put("userid", userid);
+		hashmap.put("userweight",date);
+		hashmap.put("weightdate",weight);
+		
+		return sqlSession.insert("lab.mybatis.mappers.UserMapper.setUserWeight",hashmap);
+	}
+	
+	public userWeightVO getWeight(String userid) {
+		return sqlSession.selectOne("lab.mybatis.mappers.UserMapper.getWeight",userid);
+	}
+	
+	public int WeightUpdate(UserVO vo) {
+		return sqlSession.update("lab.mybatis.mappers.UserMapper.WeightUpdate",vo);
+	}
+	
+	
 	
 
 }

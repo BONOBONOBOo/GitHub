@@ -56,7 +56,6 @@
 		//console.log(vo);
 		
 		if(time == "아침"){
-			//document.morningRrecipe.action="./detail_recipe.do?detailVO="+${vo.recipe_name};
 			document.morningRrecipe.action="./detail_recipe.do";
 			document.morningRrecipe.method="post";
 			document.morningRrecipe.submit(); 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -68,20 +69,52 @@ function cancel(){
 </head>
 <body>
 
-
-
-<div id="colorlib-page">
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="colorlib-navbar-brand">
-						<a class="colorlib-logo" href="index.html"><i class="flaticon-cutlery"></i><span>íë£¨</span><span>ì¸ë¼</span></a>
+<nav id="colorlib-main-nav" role="navigation">
+		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle active"><i></i></a>
+		<div class="js-fullheight colorlib-table">
+			<div class="colorlib-table-cell js-fullheight">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="form-group">
+							<input type="text" class="form-control" id="search" placeholder="Enter any key to search...">
+							<button type="submit" class="btn btn-primary"><i class="icon-search3"></i></button>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<ul>
+							<c:if test="${vo.userid eq null}">
+							<li><a href="login.do">로그인</a></li>
+							<li class="active"><a href="join.do">회원가입</a></li>
+							</c:if>
+							<li><a href="reservation.html">자유 레시피</a></li>
+							<li ><a href="index.do">레시피 조회</a></li>
+							
+							<c:if test="${vo.userid ne null}">
+							<li><a href="myaccount.do">내 정보</a></li>
+							<li><a href="logout.do">로그아웃</a></li>
+							</c:if>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-	</header>
+	</nav>
+
+<div id="colorlib-page">
+	<header>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="colorlib-navbar-brand">
+							<a class="colorlib-logo" href="index.do"><i class="flaticon-cutlery"></i><span>하루</span><span>세끼</span></a>
+						</div>
+						<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
+					</div>
+				</div>
+			</div>
+		</header>
 	<aside id="colorlib-hero">
 		<div class="flexslider">
 			<ul class="slides">
