@@ -5,6 +5,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lab.mybatis.mappers.RecipeMapper">
 	
+	<select id="getRecipeAll" resultType="lab.spring.food.model.RecipeVO">
+	    select * from recipe
+	</select>
+	
+	<select id="getRecipeFavorite" resultType="lab.spring.food.model.RecipeVO">
+		select * from recipe order by RECIPE_CODE desc
+	</select>
+	
+	<select id="getStarOrder" resultType="lab.spring.food.model.StarsumVO">
+		select * from recipe_starsum order by starsum desc
+	</select>
+	
+	<select id="getCommentOrder" resultType="lab.spring.food.model.Recipe_countVO">
+		select * from recipe_commentcount order by comment_count desc
+	</select>
+	
+	<select id="getFavoriteList" resultType="lab.spring.food.model.RecipeVO" parameterType="java.util.ArrayList">
+			select * from recipe where 
+					recipe_code in
+					<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+	            		#{item.value}
+	          	    </foreach>
+				
+			
+	</select>
+	
+	
+	
+	
+	
+	
 	<select id="getRecipeOne" resultType="lab.spring.food.model.RecipeVO" parameterType="int" >
 	    select * from recipe where TOTAL_CAL between 0 and #{minCal}
 	</select>
@@ -21,7 +52,12 @@
 		insert into RECIPE_COMMENT values(RECIPE_COMMENT_SEQ.nextval,#{recipe_name},#{userid},#{recipe_comment},sysdate,#{rating})
 	</insert>
 	
+	<select id="getFavorite" parameterType="string" resultType="lab.spring.food.model.UserFavoriteRecipeVO">
+		select * from userfavorite where userid=#{userid}
+	</select>
 	
-
-
+	<update id="updateFavorite" parameterType="hashmap">
+		update userfavorite set favorite_recipe = #{favorite_recipe} where userid = #{userid}
+	</update>
+	
 </mapper>

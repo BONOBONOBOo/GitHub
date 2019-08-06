@@ -1,11 +1,12 @@
 <%@page import="lab.spring.food.model.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE HTML>
 <html>
 	<head>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>3bob index</title>
@@ -106,7 +107,7 @@
 							<li><a href="login.do">로그인</a></li>
 							<li><a href="join.do">회원가입</a></li>
 							</c:if>
-							<li><a href="reservation.html">자유 레시피</a></li>
+							<li><a href="freeRecipe.do">자유 레시피</a></li>
 							<li class="active"><a href="index.do">레시피 조회</a></li>
 							
 							<c:if test="${vo.userid ne null}">

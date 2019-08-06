@@ -659,7 +659,7 @@ header {
     height: 60px;
     text-align: center;
     color: #fff;
-    background: #FF6107;
+    /* background: #FF6107; */
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
@@ -719,7 +719,7 @@ header {
   .dish-wrap:hover .addtocart {
     opacity: 1; }
   .dish-wrap:hover .wrap {
-    margin-top: -350px; }
+    margin-top: -60px; }
 
 .colorlib-menu-2 {
   margin-top: -13em;

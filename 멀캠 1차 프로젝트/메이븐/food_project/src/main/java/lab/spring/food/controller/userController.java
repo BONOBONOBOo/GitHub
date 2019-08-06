@@ -110,15 +110,11 @@ public class userController {
 		UserVO vo = service.login(userid, userpasswd);
 		HttpSession session = request.getSession();
 		if(vo==null) {
-			
-			//out.println("<script>alert('로그인 실패');</script>");
 			mav.setViewName("login");
 		}
 		
 		else {
 			session.setAttribute("vo", vo);
-			//out.println("<script>alert('로그인 성공');</script>");
-			
 			/*
 			여자
 			BMI = 665+(9.6*몸무게)+(1.8*키)-(4.7*나이)
@@ -127,6 +123,7 @@ public class userController {
 			BMI = 66+(13.8*몸무게)+(5*키)-(6.8*나이)
 			평균 몸무게 = 키 - 100 * 0.9
 			*/
+			
 			mav.addObject("vo",vo);
 			mav.setViewName("index");
 		}

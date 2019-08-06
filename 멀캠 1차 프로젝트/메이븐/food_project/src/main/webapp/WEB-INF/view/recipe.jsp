@@ -62,8 +62,14 @@
 		}
 		else if(time == '점심'){
 			
+			document.lauchRrecipe.action="./detail_recipe.do";
+			document.lauchRrecipe.method="post";
+			document.lauchRrecipe.submit(); 
 		}
 		else if(time == '저녁'){
+			document.dinnerRrcipe.action="./detail_recipe.do";
+			document.dinnerRrcipe.method="post";
+			document.dinnerRrcipe.submit(); 
 			
 		}
 		
@@ -116,25 +122,29 @@
 					<form name=lauchRrecipe>
 					<div class="col-md-4 animate-box">
 						<h2 style="text-align:center">점심</h2>
+						
 						<div class="dish-wrap">
 							<div class="wrap">
 								<div class="dish-img" style="background-image: url(${hashmap['점심'].img_url});"></div>
 								<div class="desc">
+									<input type=hidden id=detailVO name=detailVO value=${hashmap["점심"].recipe_name} />
 									<h2><a onclick='detail("점심")' href="#">${hashmap["점심"].recipe_name}</a></h2>
 									<br><br><br>
 									<h2><a onclick='detail("점심")' >${hashmap["점심"].intro}</a></h2>
 								</div>
 							</div>
 						</div>
+						
 					</div>
 					</form>
 					<form name=dinnerRrcipe>
 					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center">점심</h2>
+						<h2 style="text-align:center">저녁</h2>
 						<div class="dish-wrap">
 							<div class="wrap">
 								<div class="dish-img" style="background-image: url(${hashmap['저녁'].img_url});"></div>
 								<div class="desc">
+									<input type=hidden id=detailVO name=detailVO value=${hashmap["저녁"].recipe_name} />
 									<h2><a onclick='detail("저녁")' href="#">${hashmap["저녁"].recipe_name}</a></h2>
 									<br><br><br>
 									<h2><a onclick='detail("저녁")'>${hashmap["저녁"].intro}</a></h2>
@@ -177,10 +187,8 @@
 							<div class="wrap">
 								<div class="dish-img" style="background-image: url(images/dish-2.jpg);"></div>
 								<div class="desc">
-									<h2><a href="#">ìì ì´ë¦</a></h2>
-									<h2><a href="#">ë ìí¼</a></h2>
-								
-
+									<h2><a href="#"></a></h2>
+									<h2><a href="#"></a>/a></h2>
 								</div>
 							</div>
 						</div>

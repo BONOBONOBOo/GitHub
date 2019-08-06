@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -54,8 +55,10 @@
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
+	
 	<![endif]-->
-	<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<script src="js/jquery.min.js"></script>
+	
 	
 	
 	<style>
@@ -78,6 +81,27 @@
 		  text-indent: -9999px;
 		  cursor: pointer;
 		}
+		
+		
+		.emptyheart{
+		  background: url('images2/like3.png') no-repeat right 0;
+		  background-size: auto 100%;
+		  width: 60px;
+		  height: 60px;
+		  display: inline-block;
+		  text-indent: -9999px;
+		  cursor: pointer;
+		}
+		
+		.fullheart{
+		  background: url('images2/like6.png') no-repeat right 0;
+		  background-size: auto 100%;
+		  width: 60px;
+		  height: 60px;
+		  display: inline-block;
+		  text-indent: -9999px;
+		  cursor: pointer;
+		}
 	</style>
 	
 	<script type="text/javascript">
@@ -91,6 +115,34 @@
 		document.commentForm.action="./addComment.do";
 		document.commentForm.method="post";
 		document.commentForm.submit();
+	}
+	
+	function addFavorite(){
+		
+		if(${vo ne null}){
+			var current = document.getElementById("like").className;
+			var recipe_code = ${Recipe.recipe_code};
+			var userid = '${vo.userid}';
+			
+			$.ajax({
+				url:"addFavorite.do",
+				type:"POST",
+				data:{userid:userid,recipe:recipe_code},
+				dataType:"text"
+			})
+			
+			if(current == 'fullheart'){
+				document.getElementById("like").className = "emptyheart";
+			}
+			else{
+				document.getElementById("like").className = "fullheart";
+			}
+		}
+		else{
+			alert('로그인을 해주세요.');
+		}
+		
+		
 	}
 	</script>
 	
@@ -154,7 +206,21 @@
 				   			<div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
 				   				<div class="slider-text-inner text-center">
 				   					<div class="desc">
-				   						<span class="icon"><i class="flaticon-cutlery"></i></span>
+				   						<div style="width:25; height:25">
+										
+										<c:if test="${favorite eq '0' || vo eq null}">
+											<span id=like onclick='addFavorite()' class="emptyheart"></span>
+										</c:if>
+										
+										<c:if test="${favorite eq '1'}">
+											<span id=like onclick='addFavorite()' class="fullheart"></span>
+										</c:if>
+										
+										
+										
+				   						
+				   						</div>
+				   						
 			
 										<!-- 테이블 넣을곳 -->
 										<table style="margin:auto;">
@@ -276,7 +342,9 @@
 					
 					<td style="width:20%">
 					<input type=hidden name=recipe_name id=recipe_name value="${Recipe.recipe_name}">
+					<c:if test="${vo ne null}">
 					<input type=hidden name=userid id=userid value="${vo.userid}">
+					</c:if>
 					<a onclick="addcomment()">댓글작성</a>
 					</td>
 					</tr>

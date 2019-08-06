@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import lab.spring.food.model.CommentVO;
 import lab.spring.food.model.RecipeHope;
 import lab.spring.food.model.RecipeVO;
+import lab.spring.food.model.Recipe_countVO;
+import lab.spring.food.model.StarsumVO;
+import lab.spring.food.model.UserFavoriteRecipeVO;
+import lab.spring.food.model.UserVO;
+import lab.spring.food.model.userWeightVO;
 import lab.spring.food.service.recipeService;
 import lab.spring.food.service.userService;
 
@@ -27,6 +34,205 @@ public class recipeController {
 	
 	@Autowired
 	recipeService service;
+	
+	
+	
+	@RequestMapping(value="/freeRecipe.do")
+	public ModelAndView gofreeRecipe() {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("freeRecipe");
+		return mav;
+	}
+	
+	@RequestMapping(value="/getRecipeAll.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getRecipeAll(HttpServletRequest request) {
+		StringBuffer result=new StringBuffer("");
+		List<RecipeVO> recipevo = service.getRecipeAll();
+		HttpSession session = request.getSession();
+		UserVO uservo = (UserVO)session.getAttribute("vo");
+		String favo = "0";
+		String favoList[] = new String[] {};
+		if(uservo != null) {
+			favo = service.getFavorite(uservo.getUserid()).getFavorite_recipe();
+			favoList = favo.split(",");
+		}
+		result.append("{\"result\":[");
+		for(int i = 0;i<recipevo.size();i++) {
+			
+			String flag="0";
+			
+			result.append("[{\"recipename\":\""+recipevo.get(i).getRecipe_name()+"\"},");
+			result.append("{\"recipecode\":\""+recipevo.get(i).getRecipe_code()+"\"},");
+			result.append("{\"url\":\""+recipevo.get(i).getImg_url()+"\"},");
+			
+			if(uservo != null) {
+				for(int p = 0;p<favoList.length;p++) {
+					if(favoList[p].equals(recipevo.get(i).getRecipe_code()+"")) {
+						flag="1";
+					}
+				}
+			}
+			result.append("{\"flag\":\""+flag+"\"}]");
+			
+			if(i!=recipevo.size()-1) {
+				result.append(",");
+			}
+		}
+		result.append("]}");
+		return result.toString();
+	}
+	
+	@RequestMapping(value="/getRecipeFavorite.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getRecipeFavorite() {
+		
+		StringBuffer result=new StringBuffer("");
+		List<RecipeVO> recipevo = service.getRecipeFavorite();
+		
+		result.append("{\"result\":[");
+		for(int i = 0;i<recipevo.size();i++) {
+			result.append("[{\"recipename\":\""+recipevo.get(i).getRecipe_name()+"\"},");
+			result.append("{\"recipecode\":\""+recipevo.get(i).getRecipe_code()+"\"},");
+			result.append("{\"url\":\""+recipevo.get(i).getImg_url()+"\"}]");
+			if(i!=recipevo.size()-1) {
+				result.append(",");
+			}
+		}
+		result.append("]}");
+		return result.toString();
+		
+	}
+	
+	@RequestMapping(value="/getStarsum.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getStarRecipe(HttpServletRequest request) {
+		StringBuffer result=new StringBuffer("");
+		List<StarsumVO> recipevo = service.getStarRecipe();
+		HttpSession session = request.getSession();
+		UserVO uservo = (UserVO)session.getAttribute("vo");
+		String favo = "0";
+		String favoList[] = new String[] {};
+		if(uservo != null) {
+			favo = service.getFavorite(uservo.getUserid()).getFavorite_recipe();
+			favoList = favo.split(",");
+		}
+
+		result.append("{\"result\":[");
+		for(int i = 0;i<recipevo.size();i++) {
+			
+			String flag="0";
+			
+			result.append("[{\"recipename\":\""+recipevo.get(i).getRecipe_name()+"\"},");
+			result.append("{\"recipecode\":\""+recipevo.get(i).getRecipe_code()+"\"},");
+			result.append("{\"url\":\""+recipevo.get(i).getUrl()+"\"},");
+			
+			if(uservo != null) {
+				for(int p = 0;p<favoList.length;p++) {
+					if(favoList[p].equals(recipevo.get(i).getRecipe_code()+"")) {
+						flag="1";
+					}
+				}
+			}
+			
+			result.append("{\"flag\":\""+flag+"\"}]");
+			
+			
+			if(i!=recipevo.size()-1) {
+				result.append(",");
+			}
+		}
+		result.append("]}");
+		return result.toString();
+	}
+	
+	@RequestMapping(value="/getCommentOrder.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getCommentOrder(HttpServletRequest request) {
+		StringBuffer result=new StringBuffer("");
+		List<Recipe_countVO> recipevo = service.getCommentOrder();
+		HttpSession session = request.getSession();
+		UserVO uservo = (UserVO)session.getAttribute("vo");
+		String favo = "0";
+		String favoList[] = new String[] {};
+		if(uservo != null) {
+			favo = service.getFavorite(uservo.getUserid()).getFavorite_recipe();
+			favoList = favo.split(",");
+		}
+
+		result.append("{\"result\":[");
+		for(int i = 0;i<recipevo.size();i++) {
+			
+			String flag="0";
+			
+			result.append("[{\"recipename\":\""+recipevo.get(i).getRecipe_name()+"\"},");
+			result.append("{\"recipecode\":\""+recipevo.get(i).getRecipe_code()+"\"},");
+			result.append("{\"url\":\""+recipevo.get(i).getIMG_URL()+"\"},");
+			
+			if(uservo != null) {
+				for(int p = 0;p<favoList.length;p++) {
+					if(favoList[p].equals(recipevo.get(i).getRecipe_code()+"")) {
+						flag="1";
+					}
+				}
+			}
+			
+			result.append("{\"flag\":\""+flag+"\"}]");
+			
+			
+			if(i!=recipevo.size()-1) {
+				result.append(",");
+			}
+		}
+		result.append("]}");
+		return result.toString();
+	}
+	
+	@RequestMapping(value="/getfavoriteList.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String getfavoriteList(HttpServletRequest request) {
+		StringBuffer result=new StringBuffer("");
+		HttpSession session = request.getSession();
+		UserVO uservo = (UserVO)session.getAttribute("vo");
+		
+		String favo = "0";
+		String favoList[] = new String[] {};
+		
+		favo = service.getFavorite(uservo.getUserid()).getFavorite_recipe();
+		favoList = favo.split(",");
+		
+		
+		List<RecipeVO> recipevo = service.getFavoriteList(favoList);
+		
+		
+		result.append("{\"result\":[");
+		for(int i = 0;i<recipevo.size();i++) {
+			
+			String flag="0";
+			
+			result.append("[{\"recipename\":\""+recipevo.get(i).getRecipe_name()+"\"},");
+			result.append("{\"recipecode\":\""+recipevo.get(i).getRecipe_code()+"\"},");
+			result.append("{\"url\":\""+recipevo.get(i).getImg_url()+"\"},");
+			
+			if(uservo != null) {
+				for(int p = 0;p<favoList.length;p++) {
+					if(favoList[p].equals(recipevo.get(i).getRecipe_code()+"")) {
+						flag="1";
+					}
+				}
+			}
+			result.append("{\"flag\":\""+flag+"\"}]");
+			
+			if(i!=recipevo.size()-1) {
+				result.append(",");
+			}
+		}
+		result.append("]}");
+		return result.toString();
+	}
+	
+	
 	
 	
 	@RequestMapping(value="/recipeSearch.do")
@@ -138,10 +344,14 @@ public class recipeController {
 		
 		@RequestMapping(value="/detail_recipe.do")
 		public ModelAndView detailView(
-				@RequestParam("detailVO") String recipe
+				@RequestParam("detailVO") String recipe,
+				HttpServletRequest request
 				) {
 			ModelAndView mav = new ModelAndView();
 			RecipeVO recipevo = new RecipeVO();
+			HttpSession session = request.getSession();
+			UserVO vo = (UserVO)session.getAttribute("vo");
+			
 			
 			
 			List<CommentVO> starpoint = service.getstarPoint(recipe);
@@ -151,15 +361,28 @@ public class recipeController {
 				star += Float.parseFloat(starpoint.get(i).getRating());
 			}
 			int staravg = (int)star/starpoint.size();
-			//System.out.println("staravg = "+staravg);
+			
 			
 			String recipeOrder[] = recipevo.getOrder_detail().split("\\. ");
 			
-			for(int i = 0 ;i<recipeOrder.length;i++) {
-				System.out.println(recipeOrder[i]);
-				System.out.println();
+			
+			UserFavoriteRecipeVO favoriteVO = new UserFavoriteRecipeVO();
+			String favorite = "0";
+			if(vo != null) {
+				favoriteVO = service.getFavorite(vo.getUserid());
+				
+				String favo = favoriteVO.getFavorite_recipe();
+				String favoList[] = favo.split(",");
+				
+				for(int i = 0;i<favoList.length;i++) {
+					if(favoList[i].equals(recipevo.getRecipe_code()+"")) {
+						favorite = "1";
+						break;
+					}
+				}
 			}
 			
+			mav.addObject("favorite",favorite);
 			mav.addObject("comment",starpoint);
 			mav.addObject("ordernum",recipeOrder.length);
 			mav.addObject("recipeOrder",recipeOrder);
@@ -168,6 +391,34 @@ public class recipeController {
 			mav.setViewName("recipe_detail");
 			return mav;
 		}
-	
+		
+		@RequestMapping(value="/addFavorite.do")
+		@ResponseBody
+		public void addFavorite(
+				@RequestParam("userid")String userid,
+				@RequestParam("recipe")String recipe) {
+			
+			UserFavoriteRecipeVO vo = new UserFavoriteRecipeVO();
+			
+			vo = service.getFavorite(userid);
+			
+			String favo = vo.getFavorite_recipe();
+			String favoList[] = favo.split(",");
+			
+			boolean flag= false;
+			
+			for(int i =0;i<favoList.length;i++) {
+				if(favoList[i].equals(recipe)) {
+					favo = favo.replace(","+recipe,"");
+					flag = true;
+					break;
+				}
+			}
+			if(flag == false) {
+				favo+=","+recipe;
+			}
+			
+			service.updateFavorite(userid, favo);
+		}
 
 }

@@ -106,7 +106,6 @@ window.addEventListener("load",function(){
 	
 	
 	function changeA(){
-	
 	var weight1=document.getElementById("weightValue").innerHTML;
 	
 	 $(weight).replaceWith($("<input id=inputWeight name=inputWeight onclick=EmpytInput() style='color:black;width:100px' onkeypress='if(event.keyCode==13) {ChangeWeight(); return false;}' value="+weight1+">"));
