@@ -37,16 +37,10 @@ public class RecipeDao {
 	public List<RecipeVO> getFavoriteList(String[] favolist) {
 		
 		List<String> list = new ArrayList<String>();
-		
-		
-		
 		for(int i = 1;i<favolist.length;i++) {
 			list.add(i-1, favolist[i]);
 			System.out.println(list.get(i-1));
 		}
-		
-		
-		
 		return sqlSession.selectList("lab.mybatis.mappers.RecipeMapper.getFavoriteList",list);
 	}
 	
@@ -56,8 +50,13 @@ public class RecipeDao {
 	
 	
 	
-	public List<RecipeVO> getrecipeOne(int minCal) {
-		return sqlSession.selectList("lab.mybatis.mappers.RecipeMapper.getRecipeOne",minCal);
+	public List<RecipeVO> getrecipeOne(int minCal,int maxCal) {
+		
+		HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
+		hashmap.put("minCal", minCal);
+		hashmap.put("maxCal", maxCal);
+		
+		return sqlSession.selectList("lab.mybatis.mappers.RecipeMapper.getRecipeOne",hashmap);
 	}
 	
 	public RecipeVO getrecipe(String recipename) {
@@ -82,5 +81,15 @@ public class RecipeDao {
 		hashmap.put("favorite_recipe",favorite_recipe);
 		
 		return sqlSession.update("lab.mybatis.mappers.RecipeMapper.updateFavorite",hashmap);
+	}
+	
+	public List<RecipeVO> getHopeRecipe(int minCal,int maxCal,int selected) {
+		
+		HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
+		hashmap.put("minCal", minCal);
+		hashmap.put("maxCal", maxCal);
+		hashmap.put("selected", selected);
+		
+		return sqlSession.selectList("lab.mybatis.mappers.RecipeMapper.getHopeRecipe",hashmap);
 	}
 }

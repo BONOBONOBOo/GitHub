@@ -11,6 +11,8 @@ window.addEventListener("load",function(){
 		method:"GET",
 		async:false,
 		success:function(data){
+			console.log("들어가나");
+			console.log(data);
 			
 			var obj = JSON.parse(data);
 			

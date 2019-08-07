@@ -46,7 +46,7 @@
 	<script src="js/jquery.min.js"></script>
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	<script src="https://d3js.org/d3-axis.v1.min.js"></script>
-	<script src="js/Account.js"></script>
+	
 	
 	
 	<style>
@@ -57,7 +57,7 @@
 	}
 	.line{
 	fill:none;
-	stroke:steelblue;
+	stroke:white;
 	stroke-width:4px;
 	}
 	
@@ -67,19 +67,17 @@
 	.axis path,
 	.axis line{
 	fill:none;
-	stroke:skyblue;
+	stroke:white;
 	stroke-width:4px;
 	}
 	.axis_x line{
 	fill:none;
-	stroke:green;
+	stroke:white;
 	}
 </style>
 
 <script>
 window.addEventListener("load",function(){
-	
-	
 	
 	var weightSet;
 	var dateSet;
@@ -89,10 +87,11 @@ window.addEventListener("load",function(){
 		method:"GET",
 		async:false,
 		success:function(data){
+			console.log("성공했나?")
+			console.log(data);
 			
 			var obj = JSON.parse(data);
 			
-		
 			var weight = obj.result[0].weight;
 			var date = obj.result[1].date;
 			
@@ -132,10 +131,6 @@ window.addEventListener("load",function(){
 	
 	console.log("tickVal = "+tickVal);
 	
-	
-	
-	
-	
 	var margin = svgWidth/(weightSet.length-1);
 	
 	var line = d3.line()
@@ -143,9 +138,8 @@ window.addEventListener("load",function(){
 		return i * margin + 60
 	})
 	.y(function(d,i){
-		return (domainVal -d+(WetightMin+10))*(rangeVal/domainVal);
+		return (domainVal -d+60)*3;
 	})
-	//svgHeight=240
 	
 	var lineElements = d3.select("#myGraph")
 	.append("path")
@@ -160,20 +154,13 @@ window.addEventListener("load",function(){
 	.attr("height",1)
 	.attr("transform","translate(30,300)")
 		
-		
-	
-	
-	
 	var yScale = d3.scaleLinear()
-	.domain([0,domainVal])
+	.domain([0,100])
 	.range([rangeVal,0])
-	
-	
 	
 	var axis=d3.axisLeft(yScale)
 	.ticks(20)
-	.tickValues(tickVal);
-	
+	.tickValues([0,10,20,30,40,50,60,70,80,90,100]);
 	
 	d3.select("#myGraph").append("g")
 	.attr("class","axis")
@@ -181,14 +168,9 @@ window.addEventListener("load",function(){
 	.call(axis)
 	})
 	
-	
-	
 	function changeA(){
-	
 	var weight1=document.getElementById("weightValue").innerHTML;
-	
 	 $(weight).replaceWith($("<input id=inputWeight name=inputWeight onclick=EmpytInput() style='color:black;width:100px' onkeypress='if(event.keyCode==13) {ChangeWeight(); return false;}' value="+weight1+">"));
-	
 	}
 	
 	function EmpytInput(){
@@ -196,7 +178,6 @@ window.addEventListener("load",function(){
 	}
 	
 	function ChangeWeight(){
-
 		document.editWeightFrom.action="./myaccount.do";
 		document.editWeightFrom.method="post";
 		document.editWeightFrom.submit(); 
@@ -276,7 +257,16 @@ window.addEventListener("load",function(){
 							
 							<h2 style="color:white"><font size=6>내    정보</font></h2>
 							<form name=editWeightFrom id=editWeightFrom>
-							<table style="margin:auto; color:white;">  
+							<table style="margin:auto;">
+							<tr>
+							
+							<td style="width:40%">
+							<svg id="myGraph">
+	   						</svg>
+							</td>
+							
+							<td style="width:60%">
+							<table style="color:white;">  
 	   						
 	   						<tr>
 	   						<td><font size=4>이름</font></td>
@@ -287,9 +277,9 @@ window.addEventListener("load",function(){
 	   						<tr height="10"></tr>
 	   						
 	   						<tr >
-	   						<td><font size=4>성별</font></td>
+	   						<td style="width:60%" ><font size=4>성별</font></td>
 	   						<td width="40"></td>
-	   						<td><font size=4>${vo.sex}</font></td>
+	   						<td style="width:30%"><font size=4>${vo.sex}</font></td>
 	   						</tr>
 	   						
 	   						<tr height="10"></tr>
@@ -337,16 +327,22 @@ window.addEventListener("load",function(){
 	   						<tr height="10"></tr>
 	   						
 	   						<tr>
-	   						<td><font size=4>희망 칼로리</font></td>
+	   						<td style="width:100px"><font size=4>희망 칼로리</font></td>
 	   						<td width="40"></td>
 	   						<td>
-	   						<a style="color:white"title="클릭하면 희망칼로리 설정 페이지로 이동합니다.">
+	   						<a href="./move_join_detail.do" style="color:white"title="클릭하면 희망칼로리 설정 페이지로 이동합니다.">
 	   						<font size=4>${vo.hopeKcal} kcal</font>
 	   						</a>
 	   						</td>
 	   						</tr>
-	   						</table>	
+	   						</table>
+							</td>
+							</tr>
+							</table>
+								
 	   						</form>
+	   						
+	   						
 	   						
 	   						
 	   						
@@ -360,7 +356,7 @@ window.addEventListener("load",function(){
 		   		</div>
 	   		</div>
 			   	</li>
-
+					
 
 
 			  	</ul>
@@ -368,106 +364,10 @@ window.addEventListener("load",function(){
 		  	</div>
 		</aside>
 	</div>
-	
-	<c:if test="${vo.userid eq null}">
-	
-	<div id="colorlib-contact">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
-						<div>
-						
-						<form name="recipeForm">
-						<h3>레시피 조회</h3>
-						<table style="margin:auto;">
-					                   <tr style="padding-top: 50px;">
-					                      <td>희망 칼로리</td>
-					                      <%
-					                      if(vo==null){
-					                    	  out.println("<td><input  id='RequireCal' name='RequireCal'  value='' style =' width:150px; opacity: 0.7;text-align:center;' size='15' maxlength='12' readonly/><td >kcal</td> </td>");
-					                      }
-					                      
-					                      else{
-					                    	  out.println("<td><input  id='RequireCal' name='RequireCal'  value='"+vo.getHopeKcal()+"' style =' width:150px; opacity: 0.7;text-align:center;' size='15' maxlength='12' readonly/><td >kcal</td> </td>");
-					                      }
-					                      %>	
-					                      
-						                </tr>
-						                </tr>
-
-						                <tr height="5px"/>
-						                <tr>
-					                      <td>하루 칼로리</td>
-					                      
-					                      <td>
-					                      <select name="desireCal" style="width:150px">
-					                          <option value="0 1200" selected="selected">1200kcal 이하</option>
-											  <option value="1200 1600">1200kcal~1600kcal</option>
-											  <option value="1600 2000">1600kcal~2000kcal</option>
-											  <option value="2000 2400" >2000kcal~2400kcal</option>
-											  <option value="2400">2400kcal 이상</option>
-										  </select>
-					                      </td>
-					                      <td style="color:white;"></td> 		
-						                </tr>
-						                <tr height="30px"/>
-						                
-						               
-						                <tr>
-					                    <td style="color:white">선호재료</td>
-						                <td style="color:white">
-							                <input style="margin:auto;" type='checkbox' name='meat' value='meat'/>고기
-							                <input type='checkbox' name='fish' value='fish'/>생선
-							                <input type='checkbox' name='vege' value='vege'/>야채
-						                <td>
-						             	</tr>
-						                
-						                 <tr height="30px"/>
-						                <tr>
-					                    <td>식사패턴</td>
-						                <td>
-						                <input style="margin:auto;" type='checkbox' name='breakfast' value='breakfast' checked="checked"/>아침
-						                <input type='checkbox' name='lunch' value='lunch' checked="checked"/>점심
-						                <input type='checkbox' name='dinner' value='dinner' checked="checked"/>저녁
-						                <td>
-						             	</tr>
-						                <tr height="10px"/>
-						                <tr>
-						                <td colspan="2" align="center">
-						                <p>
-						                <% 
-						                if(vo==null){
-						                	out.println("<a href='./login.do' style='margin-left: 45px'>로그인</a>");
-						                }
-						                else{
-						                	out.println("<a href='./logout.do' style='margin-left: 45px'>로그아웃</a>");
-						                }
-						                %>
-						                <a onclick="recipe()" style="margin-left: 15px">레피시 조회</a>
-					   					</p>
-										</td></tr>
-						                </table>
-						                </form>
-						                </c:if>        
+	  
                <br>
-               </div>
-			</div>
-		</div>				
-	</div>
-</div>
+
 		
-		
-	
-	<div class="colorlib-reservation reservation-page">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
-						<h1>몸무게 변화</h1>
-						<svg id="myGraph"></svg>
-					</div>
-				</div>
-			</div>
-		</div>
 	
 
 	<!-- jQuery -->

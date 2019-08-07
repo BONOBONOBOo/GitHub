@@ -1,5 +1,6 @@
 package lab.spring.food.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,9 @@ public class recipeServiceImpl implements recipeService{
 	private RecipeDao dao;
 
 	@Override
-	public List<RecipeVO> getrecipeOne(int minCal) {
+	public List<RecipeVO> getrecipeOne(int minCal,int maxCal) {
 		
-		return dao.getrecipeOne(minCal);
+		return dao.getrecipeOne(minCal,maxCal);
 	}
 
 	@Override
@@ -73,6 +74,12 @@ public class recipeServiceImpl implements recipeService{
 	@Override
 	public List<RecipeVO> getFavoriteList(String[] favolist) {
 		return dao.getFavoriteList(favolist);
+	}
+
+	@Override
+	public List<RecipeVO> getHopeRecipe(int minCal,int maxCal,int selected) {
+		
+		return dao.getHopeRecipe(minCal,maxCal,selected);
 	}
 	
 	

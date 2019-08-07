@@ -221,10 +221,6 @@
 			<div class="colorlib-table-cell js-fullheight">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
-						<div class="form-group">
-							<input type="text" class="form-control" id="search" placeholder="Enter any key to search...">
-							<button type="submit" class="btn btn-primary"><i class="icon-search3"></i></button>
-						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -292,13 +288,25 @@
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
 						<span class="icon"><i class="flaticon-cutlery"></i></span>
-						<h2>자유 레시피</h2>
-						<p>다른 회원의 레시피를 구경하고 자신의 레시피를 자랑해봐요!!</p>
+						<h2><font>자유 레시피</font></h2>
+						<p><font>다른 회원의 레시피를 구경하고 자신의 레시피를 자랑해봐요!!</font></p>
 						<table style="margin:auto; width:555px" >
 						<tr>
-						<td style="width:33%"><a onclick="ajaxgogo()">즐겨찾기</a></td>
-						<td style="width:33%"><a onclick="getStarsum()">별점</a></td>
-						<td style="width:33%"><a onclick="getCommentOrder()">댓글</a></td>
+						<td style="width:33%">
+						<a onclick="ajaxgogo()">
+						<font size=4>즐겨찾기</font>
+						</a>
+						</td>
+						
+						<td style="width:33%">
+						<a onclick="getStarsum()">
+						<font size=4 >별점</font></a>
+						</td>
+						
+						<td style="width:33%">
+						<a onclick="getCommentOrder()">
+						<font size=4 >댓글</font></a>
+						</td>
 						</tr>
 						</table>
 					</div>

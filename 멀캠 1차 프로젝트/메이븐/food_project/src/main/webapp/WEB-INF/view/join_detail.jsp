@@ -5,7 +5,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Luto Template</title>
+	<title>하루 세끼</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -159,11 +159,11 @@
                  
                     	<td style="color:white;">
                     		키 : 
-	                    <label style="color:white;">${userinfo.height}</label>
+	                    <label style="color:white;">${vo.height}</label>
 	                    	몸무게 : 
-	               	    <label style="color:white;">${userinfo.weight}</label>
+	               	    <label style="color:white;">${vo.weight}</label>
 	                  		bmi : 
-	                    <label style="color:white;">${userinfo.bmi}</label>
+	                    <label style="color:white;">${vo.bmi}</label>
                     </td>
                </tr>
                <tr style="width:10px"></tr>
@@ -173,39 +173,39 @@
                <tr style="border: 1px solid #ffffff;">
                <td>BMI에 의한 비만도 판정</td>
                <td>수치상</td>
-               <td>겉보기</td>
+               
                </tr>
                <tr>
                <td>마른편</td>
                <td>20 미만</td>
-               <td>18 이하</td>
+               
                </tr>
                <tr>
                <td>보통</td>
                <td>20~24</td>
-               <td>18~22</td>
+               
                </tr>
                <tr>
                <td>약간 비만</td>
                <td>24~26.5</td>
-               <td>22~24</td>
+               
                </tr>
                <tr>
                <td>비만</td>
                <td>26.5 이상</td>
-               <td>24 이상</td>
+              
                </tr>
                </table>
                <tr height="50px"/>
                
-               <c:if test="${userinfo.sex eq 'male'}">
+               <c:if test="${vo.sex eq 'male'}">
                <tr>
                <td width="555px">
                <img src="images/ManBMI.jpg" width="555px"/>
                </td>
                </tr>
                </c:if>
-               <c:if test="${userinfo.sex eq 'female'}">
+               <c:if test="${vo.sex eq 'female'}">
                <tr>
                <td width="555px">
                <img src="images/WomanBMI.jpg" width="555px"/>
@@ -219,16 +219,16 @@
           		<table style="color:white; margin:auto;" width="555">
           		
           		<tr>
-          		<td width="100">키</td>
-          		<td>키&nbsp;</td>
+          		<td width="100">키</td><td>X</td>
+          		<td>키&nbsp;</td><td>X</td>
           		<td style="margin:auto;" align="center">본인이 원하는 bmi</td>
+          		<td>=</td>
           		<td>표준 체중</td>
           		</tr>
           		<tr style="height:100px;">
-          		<td><label id=userHeight value=1.8>${userinfo.height/100}</label></td>
-          		
-          		<td><label >${userinfo.height/100}</label></td>
-          		
+          		<td><label id=userHeight value="${vo.height/100}">${vo.height/100}</label>(m)</td>
+          		<td>X</td><td><label >${vo.height/100}</label>(m)</td>
+          		<td>X</td>
           		<td align="center">
           			<input type="radio" name="chk_info" style="vertical-align: middle" value="18" onclick='avgWeight(18)'>18<br>
 					<input type="radio" name="chk_info" style="vertical-align: middle" value="19" onclick='avgWeight(19)'>19<br>
@@ -237,6 +237,7 @@
 					<input type="radio" name="chk_info" style="vertical-align: middle" value="22" onclick='avgWeight(22)'>22<br>
 					<input type="radio" name="chk_info" style="vertical-align: middle" value="23" onclick='avgWeight(23)'>23<br>
 				</td>
+				<td>=</td>
           		<td><label id="resultWeight"></label></td>
           		</tr>
           		</table>

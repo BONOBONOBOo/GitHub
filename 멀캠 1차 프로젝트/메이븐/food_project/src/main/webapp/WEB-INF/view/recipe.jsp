@@ -72,8 +72,27 @@
 			document.dinnerRrcipe.submit(); 
 			
 		}
+	}
+	
+	function detail2(time){
 		
-		
+		if(time == "아침"){
+			document.morningRrecipe1.action="./detail_recipe.do";
+			document.morningRrecipe1.method="post";
+			document.morningRrecipe1.submit(); 
+		}
+		else if(time == '점심'){
+			
+			document.lauchRrecipe1.action="./detail_recipe.do";
+			document.lauchRrecipe1.method="post";
+			document.lauchRrecipe1.submit(); 
+		}
+		else if(time == '저녁'){
+			document.dinnerRrcipe1.action="./detail_recipe.do";
+			document.dinnerRrcipe1.method="post";
+			document.dinnerRrcipe1.submit(); 
+			
+		}
 	}
 	
 	
@@ -92,14 +111,77 @@
 		<div class="goto-here"></div>
 
 
+		<div class="colorlib-menu">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
+						<span class="icon"><i class="flaticon-cutlery"></i></span>
+						<h2>첫 번째 레시피 추천</h2>
+						<p>${hopetext}</p>
+					</div>
+				</div>
+				<div class="row">
+				<form name=morningRrecipe1>
+					<div class="col-md-4 animate-box">
+					
+						<h2 style="text-align:center">아침</h2>
+						<div class="dish-wrap">
+							<div class="wrap">
+								<div class="dish-img" style="background-image: url(${hopehashmap['아침'].img_url});"></div>
+								<div class="desc">
+									<input type=hidden id=detailVO name=detailVO value=${hopehashmap["아침"].recipe_name} />
+									<h2><a onclick='detail2("아침")' href="#">${hopehashmap["아침"].recipe_name}</a></h2>
+									<br><br><br>
+									<h2><a onclick='detail2("아침")'>${hopehashmap["아침"].intro}</a></h2>
+								</div>
+							</div>
+						</div>
+					</div>
+					</form>
+					
+					<form name=lauchRrecipe1>
+					<div class="col-md-4 animate-box">
+						<h2 style="text-align:center">점심</h2>
+						<div class="dish-wrap">
+						<div class="wrap">
+								<div class="dish-img" style="background-image: url(${hopehashmap['점심'].img_url});"></div>
+								<div class="desc">
+									<input type=hidden id=detailVO name=detailVO value=${hopehashmap["점심"].recipe_name} />
+									<h2><a onclick='detail2("점심")' href="#">${hopehashmap["점심"].recipe_name}</a></h2>
+									<br><br><br>
+									<h2><a onclick='detail2("점심")'>${hopehashmap["점심"].intro}</a></h2>
+								</div>
+							</div>
+						</div>
+					</div>
+					</form>
+					<form name=dinnerRrcipe1>
+					<div class="col-md-4 animate-box">
+						<h2 style="text-align:center">저녁</h2>
+						<div class="dish-wrap">
+						<div class="wrap">
+								<div class="dish-img" style="background-image: url(${hopehashmap['저녁'].img_url});"></div>
+								<div class="desc">
+									<input type=hidden id=detailVO name=detailVO value=${hopehashmap["저녁"].recipe_name} />
+									<h2><a onclick='detail2("저녁")' href="#">${hopehashmap["저녁"].recipe_name}</a></h2>
+									<br><br><br>
+									<h2><a onclick='detail2("저녁")'>${hopehashmap["저녁"].intro}</a></h2>
+								</div>
+							</div>
+							</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
 		
 		<div class="colorlib-menu">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
 						<span class="icon"><i class="flaticon-cutlery"></i></span>
-						<h2>추천 -1-</h2>
-						<p>상세 내용</p>
+						<h2>두 번째 레시피 추천</h2>
+						<p>${text}</p>
 					</div>
 				</div>
 				<form name=morningRrecipe>
@@ -159,55 +241,7 @@
 
 
 
-		<div class="colorlib-menu">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3 text-center animate-box intro-heading">
-						<span class="icon"><i class="flaticon-cutlery"></i></span>
-						<h2>추천 -2-</h2>
-						<p>상세 내용</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center">아침</h2>
-						<div class="dish-wrap">
-							<div class="wrap">
-								<div class="dish-img" style="background-image: url(images/dish-1.jpg);"></div>
-								<div class="desc">
-									<h2><a href="#">ìì ì´ë¦</a></h2>
-									<h2><a href="#">ë ìí¼</a></h2>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center">점심</h2>
-						<div class="dish-wrap">
-							<div class="wrap">
-								<div class="dish-img" style="background-image: url(images/dish-2.jpg);"></div>
-								<div class="desc">
-									<h2><a href="#"></a></h2>
-									<h2><a href="#"></a>/a></h2>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<h2 style="text-align:center">저녁</h2>
-						<div class="dish-wrap">
-							<div class="wrap">
-								<div class="dish-img" style="background-image: url(images/dish-3.jpg);"></div>
-								<div class="desc">
-									<h2><a href="#">ìì ì´ë¦</a></h2>
-									<h2><a href="#">ë ìí¼</a></h2>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 
 
 

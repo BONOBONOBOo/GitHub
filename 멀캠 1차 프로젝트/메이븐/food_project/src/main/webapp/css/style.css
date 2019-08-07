@@ -1,18 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Cute+Font|Gaegu|Hi+Melody|Sunflower:300&display=swap');
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
   src: url("../fonts/icomoon/icomoon.eot?srf3rx#iefix") format("embedded-opentype"), url("../fonts/icomoon/icomoon.ttf?srf3rx") format("truetype"), url("../fonts/icomoon/icomoon.woff?srf3rx") format("woff"), url("../fonts/icomoon/icomoon.svg?srf3rx#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 /* =======================================================
 *
-* 	Template Style 
-*	Edit this section
+*    Template Style 
+*   Edit this section
 *
 * ======================================================= */
 body {
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: 'Sunflower', sans-serif;
   line-height: 1.8;
   font-size: 15px;
   font-weight: 400;
@@ -267,7 +267,8 @@ header {
       background: black;
       position: relative; }
       header .colorlib-navbar-brand .colorlib-logo span {
-        font-size: 19px;
+      font-family: "Cute Font";
+        font-size: 22px;
         display: block;
         margin-bottom: 0;
         line-height: 1.0;
@@ -390,6 +391,10 @@ header {
         #colorlib-hero .flexslider .slider-text > .slider-text-inner .desc {
           padding: 0;
           position: relative; }
+          #colorlib-hero .flexslider .slider-text > .slider-text-inner .desc h2{
+            font-family:'Cute Font',sans-serif;
+            font-size: 40px;
+          }
           #colorlib-hero .flexslider .slider-text > .slider-text-inner .desc .icon {
             display: block;
             position: relative;

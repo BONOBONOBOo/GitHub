@@ -35,8 +35,6 @@ public class recipeController {
 	@Autowired
 	recipeService service;
 	
-	
-	
 	@RequestMapping(value="/freeRecipe.do")
 	public ModelAndView gofreeRecipe() {
 		ModelAndView mav = new ModelAndView();
@@ -202,7 +200,6 @@ public class recipeController {
 		favo = service.getFavorite(uservo.getUserid()).getFavorite_recipe();
 		favoList = favo.split(",");
 		
-		
 		List<RecipeVO> recipevo = service.getFavoriteList(favoList);
 		
 		
@@ -262,79 +259,84 @@ public class recipeController {
 		
 		Random ran = new Random();
 		HashMap<String, RecipeVO> hashmap = new HashMap<String, RecipeVO>();
+		HashMap<String, RecipeVO> hopehashmap = new HashMap<String, RecipeVO>();
 		
-		if(desireCalarray.length==2) {
-			minCal = Integer.parseInt(desireCalarray[0]);
-			minunit = Math.round(minCal/10);
-			
-			if(breakfast != null && launch != null && dinner!=null) {
-				//4.4.2
-				breakfastRecipe = service.getrecipeOne(minCal*4);
-				hashmap.put("아침", breakfastRecipe.get(ran.nextInt(breakfastRecipe.size())));
-				lunchRecipe = service.getrecipeOne(minCal*4);
-				hashmap.put("점심", lunchRecipe.get(ran.nextInt(lunchRecipe.size())));
-				dinnerRecipe = service.getrecipeOne(minCal*2);
-				hashmap.put("저녁", dinnerRecipe.get(ran.nextInt(dinnerRecipe.size())));
-				
-			} 
-			else if(breakfast == null && launch != null && dinner!=null) {
-				//0.6.4
-				lunchRecipe = service.getrecipeOne(minCal*6);
-				dinnerRecipe = service.getrecipeOne(minCal*4);
-			}
-			else if(breakfast != null && launch == null && dinner!=null) {
-				//6.0.4
-				breakfastRecipe = service.getrecipeOne(minCal*6);
-				dinnerRecipe = service.getrecipeOne(minCal*4);
-			}
-			else if(breakfast != null && launch != null && dinner==null) {
-				//6.4.0
-				breakfastRecipe = service.getrecipeOne(minCal*6);
-				lunchRecipe = service.getrecipeOne(minCal*4);
-			}
-			
-			/*
-			System.out.println("breakfastRecipe.size() = " + breakfastRecipe.size());
-			System.out.println("lunchRecipe.size() = "+lunchRecipe.size());
-			System.out.println("dinnerRecipe.size() = "+dinnerRecipe.size());
-			*/
-			
-				
-
+		minCal = Integer.parseInt(desireCalarray[0]);
+		maxCal = Integer.parseInt(desireCalarray[1]);
+		minunit = Math.round(minCal/10);
+		maxunit = Math.round(maxCal/10);
+		
+		
+		//4.4.2
+		int ccal=0;
+		
+		breakfastRecipe = service.getrecipeOne(minunit*4,maxunit*4);
+		RecipeVO br = breakfastRecipe.get(ran.nextInt(breakfastRecipe.size()));
+		hashmap.put("아침", br);
+		
+		lunchRecipe = service.getrecipeOne(minunit*4,maxunit*4);
+		RecipeVO la = lunchRecipe.get(ran.nextInt(lunchRecipe.size()));
+		hashmap.put("점심", la);
+		
+		dinnerRecipe = service.getrecipeOne(minunit*2,maxunit*2);
+		RecipeVO di = dinnerRecipe.get(ran.nextInt(dinnerRecipe.size()));
+		hashmap.put("저녁", di);
+		
+		ccal = 
+				Integer.parseInt(br.getTotal_cal())
+				+Integer.parseInt(la.getTotal_cal())
+				+Integer.parseInt(di.getTotal_cal())
+				;
+		
+		String text ="다양한 영양소가 들어있는 총 "+ccal+" kcal의 식단";
+		
+		int selected=0;
+		
+		String detail_text="";
+		if(vege != null) {
+			selected = 1;
+			detail_text = detail_text.concat("야채 위주의 ");
+		}
+		else if(fish != null) {
+			selected = 2;
+			detail_text = detail_text.concat("생선 위주의 ");
+		}
+		else if(meat != null) {
+			selected = 3;
+			detail_text = detail_text.concat("고기 위주의 ");
+		}
+		else if(selected == 0) {
+			detail_text = detail_text.concat("다양한 영양소가 들어있는 ");
 		}
 		
-		else {
-			System.out.println("desireCalarray.length = "+desireCalarray.length);
-			System.out.println("desireCalarray[0] = "+desireCalarray[0]);
-			//minCal = Integer.parseInt(desireCalarray[0]);
-			//maxCal = Integer.parseInt(desireCalarray[1]);
-			//minunit = Math.round(minCal/10);
-			//maxunit = Math.round(maxCal/10);
-			
-		}
+		int totalCal = 0;
 		
-		/*
-		for(int i = 0; i<breakfastRecipe.size();i++) {
-			System.out.println("breakfastRecipe["+i+"] = " + breakfastRecipe.get(i));	
-		}
+		breakfastRecipe = service.getHopeRecipe(minunit*4,maxunit*4,selected);
 		
-		for(int i = 0; i<lunchRecipe.size();i++) {
-			System.out.println("lunchRecipe["+i+"] = " + lunchRecipe.get(i));	
-		}
+		RecipeVO hopebf = breakfastRecipe.get(ran.nextInt(breakfastRecipe.size()));
+		hopehashmap.put("아침", hopebf);
 		
-		for(int i = 0; i<dinnerRecipe.size();i++) {
-			System.out.println("dinnerRecipe["+i+"] = " + dinnerRecipe.get(i));	
-		}
-		*/
+		lunchRecipe = service.getHopeRecipe(minunit*4,maxunit*4,selected);
+		RecipeVO hopela = lunchRecipe.get(ran.nextInt(lunchRecipe.size()));
+		hopehashmap.put("점심", hopela);
 		
+		dinnerRecipe = service.getHopeRecipe(minunit*2,maxunit*2,selected);
+		RecipeVO hopedi = dinnerRecipe.get(ran.nextInt(dinnerRecipe.size()));
+		hopehashmap.put("저녁", hopedi);
+		
+		totalCal = 
+				Integer.parseInt(hopebf.getTotal_cal())
+				+Integer.parseInt(hopela.getTotal_cal())
+				+Integer.parseInt(hopedi.getTotal_cal())
+				;
+		
+		detail_text = detail_text.concat("총 "+totalCal+" kcal의 식단");
 		
 		
-		/*
-		RedirectView redirectView = new RedirectView(); // redirect url 설정
-		redirectView.setUrl("recipe.jsp");
-		redirectView.setExposeModelAttributes(false);
-		 */
-	
+		mav.addObject("hopetext",detail_text);
+		mav.addObject("text",text);
+		
+		mav.addObject("hopehashmap",hopehashmap);
 		mav.addObject("hashmap",hashmap);
 		mav.setViewName("recipe");
 		

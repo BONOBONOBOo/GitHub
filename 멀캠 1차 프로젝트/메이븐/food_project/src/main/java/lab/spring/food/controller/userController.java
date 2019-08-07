@@ -75,6 +75,13 @@ public class userController {
 		return mov;	
 	}
 	
+		@RequestMapping(value="/move_join_detail.do", method=RequestMethod.GET)
+	public ModelAndView move_join_detail() {
+		
+		ModelAndView mov = new ModelAndView();
+		mov.setViewName("join_detail");
+		return mov;	
+	}
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request) {
 		
@@ -172,10 +179,13 @@ public class userController {
 			@RequestParam("year") String year,
 			@RequestParam("month") String month,
 			@RequestParam("day") String day,
-			HttpServletResponse response) throws IOException {
+			HttpServletResponse response,
+			HttpServletRequest request) throws IOException {
 		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charser=utf-8");
+		
+		HttpSession session = request.getSession();
 		
 		int result;
 		ModelAndView mav = new ModelAndView();
@@ -208,13 +218,11 @@ public class userController {
 		service.setUserWeight(vo.getUserid(), time1, Float.toString(vo.getWeight()));
 		
 		if(result > 0) {
-			out.println("회원가입 성공");
-			out.flush();
+			session.setAttribute("vo", vo);
 			mav.addObject("userinfo",vo);
 			mav.setViewName("join_detail");
 		}
 		else {
-			out.println("회원가입 실패");
 			mav.setViewName("login");
 		}
 		
@@ -245,9 +253,15 @@ public class userController {
 		UserVO vo = (UserVO) session.getAttribute("vo");
 		String userid = vo.getUserid();
 		
+		System.out.println("들어가나?");
+		System.out.println(userid);
+		
 		StringBuffer result=new StringBuffer(""); 
 		result.append("{\"result\":[");
 		userWeightVO recipe= service.getWeight(userid);
+		
+		
+		
 		result.append("{\"weight\":\""+recipe.getWeight_date()+"\"},");
 		result.append("{\"date\":\""+recipe.getWeight_history()+"\"}");
 		result.append("]}");
