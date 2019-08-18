@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lab.mybatis.mappers.UserMapper">
+  <select id="login" resultType="lab.spring.food.model.UserVO" parameterType="hashmap" >
+    select * from userinfo where userid = #{uid} and userpass = #{upwd}
+  </select>
+  
+  <select id="getUserinfo" resultType ="lab.spring.food.model.UserVO">
+  	select * from userinfo where userid = #{userid}
+  </select>
+  
+  <insert id="Join" parameterType="lab.spring.food.model.UserVO">
+  	insert into userinfo
+  	values(#{userid},#{userpass},#{weight},#{height},
+  	#{bmi},#{username},#{birth},#{sex},#{hopeKcal})
+  </insert>
+  
+  <update id="HopeUpdate" parameterType="hashmap">
+  	update userinfo set HOPEKCAL = #{hopeKcal} where USERID = #{userid}
+  </update>
+  
+  <update id="WeightUpdate" parameterType="lab.spring.food.model.UserVO">
+  	update userinfo set weight = #{weight} where USERID = #{userid}
+  </update>
+  
+  <select id="getWeight" parameterType="string" resultType="lab.spring.food.model.userWeightVO">
+  	select * from weight_history where userid = #{userid}
+  </select>
+  
+  <insert id="setUserWeight" parameterType="hashmap">
+  	insert into weight_history values(#{userid},#{userweight},#{weightdate})
+  </insert>
+  
+ 
+ 
+  
+  
+
+</mapper>

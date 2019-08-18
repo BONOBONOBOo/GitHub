@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lab.mybatis.mappers.RecipeMapper">
+	
+	<select id="getRecipeAll" resultType="lab.spring.food.model.RecipeVO">
+	    select * from recipe
+	</select>
+	
+	<select id="getRecipeFavorite" resultType="lab.spring.food.model.RecipeVO">
+		select * from recipe order by RECIPE_CODE desc
+	</select>
+	
+	<select id="getStarOrder" resultType="lab.spring.food.model.StarsumVO">
+		select * from recipe_starsum order by starsum desc
+	</select>
+	
+	<select id="getCommentOrder" resultType="lab.spring.food.model.Recipe_countVO">
+		select * from recipe_commentcount order by comment_count desc
+	</select>
+	
+	<select id="getFavoriteList" resultType="lab.spring.food.model.RecipeVO" parameterType="java.util.ArrayList">
+			select * from recipe where 
+					recipe_code in
+					<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+	            		#{item}
+	          	    </foreach>
+	</select>
+	
+	<select id="getHopeRecipe" resultType="lab.spring.food.model.RecipeVO" parameterType="hashmap">
+			select * from recipe where 
+					TOTAL_CAL between #{minCal} and #{maxCal}
+					
+					<choose>
+						<when test="selected == 1">
+						and ((ing_category like '%곡류%')
+						or (ing_category like '%콩류%')
+						or (ing_category like '%버섯류%')
+						or (ing_category like '%해조류%')
+						or (ing_category like '%밀가루%')
+						or (ing_category like '%과일류%')
+						or (ing_category like '%채소류%')
+						)
+						</when>
+						
+						<when test="selected == 2">
+						and (ing_category like '%어류%')
+						</when>
+						
+						<when test="selected == 3">
+						and ((ing_category like '%쇠고기류%') 
+						or (ing_category like '%닭고기류%') 
+						or (ing_category like '%돼지고기류%'))
+						</when>
+					</choose>
+					
+	</select>
+	
+	
+	
+	
+	
+	
+	<select id="getRecipeOne" resultType="lab.spring.food.model.RecipeVO" parameterType="hashmap" >
+	    select * from recipe where TOTAL_CAL between #{minCal} and #{maxCal}
+	</select>
+	
+	<select id="getRecipe" resultType="lab.spring.food.model.RecipeVO" parameterType="string" >
+		select * from recipe where recipe_name=#{recipename}
+	</select>
+	
+	<select id="getStarPoint" resultType="lab.spring.food.model.CommentVO" parameterType="string" >
+		select * from RECIPE_COMMENT where recipe_name=#{recipename}
+	</select>
+	
+	<insert id="addComment" parameterType="lab.spring.food.model.CommentVO">
+		insert into RECIPE_COMMENT values(RECIPE_COMMENT_SEQ.nextval,#{recipe_name},#{userid},#{recipe_comment},sysdate,#{rating})
+	</insert>
+	
+	<select id="getFavorite" parameterType="string" resultType="lab.spring.food.model.UserFavoriteRecipeVO">
+		select * from userfavorite where userid=#{userid}
+	</select>
+	
+	<update id="updateFavorite" parameterType="hashmap">
+		update userfavorite set favorite_recipe = #{favorite_recipe} where userid = #{userid}
+	</update>
+	
+</mapper>
