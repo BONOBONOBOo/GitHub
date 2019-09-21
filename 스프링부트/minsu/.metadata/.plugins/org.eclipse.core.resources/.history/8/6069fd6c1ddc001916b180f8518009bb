@@ -1,0 +1,46 @@
+#spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+##:xe 아니고 /xe  xe는 express edition
+#spring.datasource.url=jdbc:oracle:thin:@localhost:1521/xe
+#spring.datasource.username=hr
+#spring.datasource.password=1234
+# 
+## http port
+## change port number (default 8080)
+#server.port=80
+##jsp주석 처리하고 타임리프만 사용  
+##spring.mvc.view.prefix=/WEB-INF/views/
+##spring.mvc.view.suffix=.jsp
+##server.jsp-servlet.init-parameters.development=true
+# 
+#server.error.whitelabel.enabled=false
+#spring.thymeleaf.cache=false
+
+
+
+
+
+#src/main/resources/application.properties
+
+#db connection(oracle) - 연결정보
+#spring.datesource.driver-class-name=oracle.jdbc.driver.OracleDriver
+spring.datesource.driverClassName=oracle.jdbc.driver.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521/xe
+spring.datasource.username=hr
+spring.datasource.password=oracle
+
+#http port set (default : 8080)
+server.port=8070
+
+#view resolver(템플릿 대신 JSP 사용할 경우)
+spring.mvc.view.prefix=/WEB-INF/views/
+spring.mvc.view.suffix=.jsp
+
+#JSP 수정 시 server auto refresh
+server.servlet.jsp.init-parameters.development=true
+
+
+#custom error page
+server.error.whitelabel.enabled=false
+
+#thymeleaf auto refresh : thymeleaf 사용하는 경우 화면이 수정되면 자동으로 리프레시
+#spring.thymeleaf.cache=false

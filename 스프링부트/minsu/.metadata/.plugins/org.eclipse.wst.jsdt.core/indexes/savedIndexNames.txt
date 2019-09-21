@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+D:\잡동사니\minsu\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+802064061.index
+1953292796.index
+365433495.index
+3435648363.index
+2161343744.index
+2973635039.index
+1561118856.index
