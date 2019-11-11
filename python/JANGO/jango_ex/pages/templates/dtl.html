@@ -1,0 +1,43 @@
+<h1>반복문</h1>
+
+{% for f in foods %}
+    <p>{{f}}</p>
+{% endfor %}
+
+<hr>
+
+{% for f in foods %}
+    <p>{{forloop.counter}}.{{f}}</p>
+{% endfor %}
+
+<hr>
+
+{% for user in empty %}
+        <p>{{user}}</p>
+        <!--empty가 for문안에있을때 -->
+    {%empty%}
+        <p>현재 가입한 유저가 없습니다.</p>
+{% endfor %}
+
+<hr>
+<h2>조건문</h2>
+{% if '짜장면' in foods %}
+    <p>짜장면엔 단무지 최고!</p>
+{% endif %}
+<hr>
+
+{% for f in foods %}
+    {{forloop.counter}}번째
+    {% if forloop.first %}
+        <p>{{f}} + 고추가루</p>
+    {% else %}
+        <p>{{f}}</p>
+    {%endif%}
+{%endfor%}
+<hr>
+
+<h1>{{datetime}}</h1>
+
+
+    
+
